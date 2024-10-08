@@ -16,6 +16,6 @@ Hi! I am Runjia (Ruhn-jah).ツ I am a first-year PhD student at Rochester Instit
 
 
 **<font size = 5>Selected Publications</font>**
-**[NeurIPS 24] Visual Fourier Prompt Tuning**
-**Runjia Zeng**, Cheng Han, Qifan Wang, Chunshu Wu, Tong Geng, Lifu Huangg, Ying Nian Wu, Dongfang Liu
+
+- [[NeurIPS 24] Visual Fourier Prompt Tuning](http://www.runjia.tech/publication/VFPT)
 
