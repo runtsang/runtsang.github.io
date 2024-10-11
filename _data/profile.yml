@@ -34,10 +34,8 @@ portrait_caption: >-
 
 education:
 - name: Rochester Institute of Technology
-  logo: /assets/images/badges/RIT_2018_logo_short_orange.svg.png
-  position: >- 
-    Electrical and Computer Engineering <br/>
-    Ph.D. Student
+  logo: /assets/images/badges/Rochester_Institute_of_Technology_Seal_(2018).svg
+  position: Ph.D. Student in Electrical and Computer Engineering
   date: Sep. 2024 - present
 - name: Guangdong University of Technology
   logo: /assets/images/badges/Guangdong_University_of_Technology_Logo.svg.png
