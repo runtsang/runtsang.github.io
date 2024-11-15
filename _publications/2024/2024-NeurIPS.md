@@ -21,6 +21,9 @@ authors:
   - Ying Nian Wu
   - Dongfang Liu
 links:
+  Homepage: https://runjia.tech/vfpt_page/
   Code: https://github.com/runtsang/VFPT
-  Paper: https://nips.cc/virtual/2024/poster/93669
+  Paper: https://arxiv.org/abs/2411.0132
+  Slide: https://runjia.tech/vfpt_page/static/images/VFPT.pptx
+  Video: https://recorder-v3.slideslive.com/?share=96649&s=ddeb9230-5258-4ce1-bcad-092710eb580f
 ---
