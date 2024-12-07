@@ -26,4 +26,5 @@ links:
   Paper: https://arxiv.org/abs/2411.01327
   Slide: https://runjia.tech/vfpt_page/static/images/VFPT.pptx
   Video: https://recorder-v3.slideslive.com/?share=96649&s=ddeb9230-5258-4ce1-bcad-092710eb580f
+  Poster: https://nips.cc/virtual/2024/poster/93669
 ---
