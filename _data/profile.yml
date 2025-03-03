@@ -39,7 +39,7 @@ education:
   logo: /assets/images/badges/RIT_orange.jpg
   position: Ph.D. Student in Electrical and Computer Engineering
   date: Sep. 2024 - present
-- name: Guangdong University of Technology
+- name: Guangdong University of Technology <span style='color:#ADD8E6;'>[Honors Program]</span>"
   logo: /assets/images/badges/Guangdong_University_of_Technology_Logo.svg.png
   position: B. Eng in Computer Science and Technology
   date: Sep. 2020 - Jul. 2024
