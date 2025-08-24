@@ -10,7 +10,10 @@
             <div class="media-body">
                 {% for item in year.items %}
                 <div class="my-1 d-flex">
-                    <div><span style="color: rgb(0, 123, 255);">[{{ item.con }}]</span> {{ item.title }}</div>
+                    <div>
+                        {% if item.accepted == 'yes' %}<a href="{{ item.link }}"><span class="text-primary">[{{ item.con }}]</span></a>{% else %}<span class="text-muted">[{{ item.con }}]</span>{% endif %}
+                        {{ item.title }}
+                    </div>
                     <div class="ml-auto mt-auto text-muted no-break"><i>{{ item.date | date: "%b %d" }}</i></div>
                 </div>
                 {% endfor %}
