@@ -9,7 +9,7 @@ pub_last:       ' <span class="badge badge-pill badge-publication badge-success"
 pub_date:       "2025"
 
 abstract: >-
-  Considering deep neural networks as manifold mappers, the pretrain-then-fine-tune paradigm can be interpreted as a two-stage process: pretrain establishes a broad knowledge base, and fine-tune adjusts the model parameters to activate specific neural pathways to align with the target manifold. Although prior fine-tuning approaches demonstrate success, their rigid parameter space limits their ability to dynamically activate appropriate neural pathways, rendering them ill-equipped to adapt flexibly to the diverse and evolving data distributions. In light of this view, we propose a novel approach, Mixture of Expert Prompt Tuning (MEPT), as an effective and efficient manifold-mapping framework. MEPT leverages the Mixture of Experts architecture by integrating multiple prompt experts to adaptively learn diverse and non-stationary data distributions.
+  Considering deep neural networks as manifold mappers, the pretrain-then-fine-tune paradigm is a two-stage process: pretrain builds a broad knowledge base, and fine-tune adjusts parameters to activate specific neural pathways aligning with the target manifold. While prior fine-tuning approaches show success, their rigid parameter space limits dynamic pathway activation, making them less adaptable to diverse and evolving data. In this view, we propose Mixture of Expert Prompt Tuning (MEPT), an effective and efficient manifold-mapping framework that leverages multiple prompt experts to adaptively learn diverse and non-stationary data distributions.
 cover:          assets/images/paper/mept.jpg
 authors:
   - Runjia Zeng
