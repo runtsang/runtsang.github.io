@@ -25,4 +25,6 @@ authors:
   - Dongfang Liu
 links:
   Homepage: https://runjia.tech/mept_page/
+  Code: https://github.com/runtsang/MEPT
+  Paper: https://arxiv.org/abs/2509.00996
 ---
