@@ -24,7 +24,7 @@ authors:
   - Lifu Huang
   - Dongfang Liu
 links:
-  Homepage: https://runjia.tech/mept_page/
+  Homepage: https://runjia.tech/emnlp_mept/
   Code: https://github.com/runtsang/MEPT
   Paper: https://arxiv.org/abs/2509.00996
 ---
