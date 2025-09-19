@@ -20,15 +20,18 @@
     {%- assign info = site.data.authors[key] -%}
 
     {%- if info['name'] -%}
-        {%- assign name = info['name'] -%}
+    {%- assign name = info['name'] -%}
     {%- else -%}
-        {%- assign name = key -%}
+    {%- assign name = key -%}
     {%- endif -%}
 
+    {%- assign display_name = name | append: mark -%}
+
+    {%- if info['underline'] == true -%}
+    {%- assign display_name = "<u>" | append: display_name | append: "</u>" -%}
+    {%- endif -%}
     {%- if info['bold'] == true -%}
-        {%- assign display_name = name | append: mark | prepend: "<strong>" | append: "</strong>" -%}
-    {%- else -%}
-        {%- assign display_name = name | append: mark -%}
+    {%- assign display_name = "<strong>" | append: display_name | append: "</strong>" -%}
     {%- endif -%}
     
     {%- if info['url'] -%}
