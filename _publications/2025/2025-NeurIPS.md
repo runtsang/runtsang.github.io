@@ -24,7 +24,7 @@ authors:
   - Qifan Wang
   - Dongfang Liu
 links:
-  Homepage: https://runjia.tech/neurips_pta-llm/
-  Code: https://github.com/runtsang/PTA-LLM
-  Paper: https://arxiv.org/abs/2509.17276
+  Homepage💻: https://runjia.tech/neurips_pta-llm/
+  Code💾: https://github.com/runtsang/PTA-LLM
+  Paper📑: https://arxiv.org/abs/2509.17276
 ---
