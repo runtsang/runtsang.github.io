@@ -27,4 +27,5 @@ links:
   Homepage💻: https://runjia.tech/neurips_pta-llm/
   Code💾: https://github.com/runtsang/PTA-LLM
   Paper📑: https://arxiv.org/abs/2509.17276
+  Poster🎇: https://github.com/runtsang/neurips_pta-llm/blob/master/static/images/poster.jpg
 ---

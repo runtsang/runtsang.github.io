@@ -27,4 +27,5 @@ links:
   Homepage💻: https://runjia.tech/emnlp_mept/
   Code💾: https://github.com/runtsang/MEPT
   Paper📑: https://arxiv.org/abs/2509.00996
+  Poster🎇: https://github.com/runtsang/emnlp_mept/blob/master/static/images/poster.jpg
 ---
