@@ -31,6 +31,9 @@ short_bio: >-
   <p>
     Email: runjia@<span style='color:#1986d5;'>msn.com</span> (Preferred) / rz4545@<span style='color:#fb6a21;'>rit.edu</span> / zrainj@<span style='color:#3f2c74;'>uw.edu</span> / z@<span style='color:#d32c15;'>r</span><span style='color:#f86331;'>u</span><span style='color:#fff33e;'>n</span><span style='color:#2cad29;'>j</span><span style='color:#068ff6;'>i</span><span style='color:#000a74;'>a</span>.<span style='color:#20108b;'>t</span>e<span style='color:#efacc2;'>c</span><span style='color:#8f5524;'>h</span>
   </p>
+  <p>
+    <span style="color:#f37939;">Looking for a summer 26' internship!! 🙏</span>
+  </p>
 
 portrait_url: /assets/images/photos/runjia.jpg
 portrait_caption: >-
@@ -49,7 +52,7 @@ education:
 experience:
 - name: Institute of Software Chinese Academy of Sciences
   # logo: /assets/images/badges/iscas.png
-  position: NLP Intern
+  position: NLP Intern on MindSpore (Chinese Huggingface 🤗)
   date: Apr. 2023 - Sep. 2023
 
 awards:
