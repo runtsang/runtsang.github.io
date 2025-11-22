@@ -75,8 +75,7 @@
                                 {% for item in site.data.profile.service %}
                                 <li class="media mb-1">
                                     <div class="media-body">
-                                        <div>{{ item.role }}</div>
-                                        <div class="small">{{ item.venues }}</div>
+                                        <div>{{ item.role }}: {{ item.venues }}</div>
                                         {% if item.note %}
                                         <div class="small text-muted">{{ item.note }}</div>
                                         {% endif %}
