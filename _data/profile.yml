@@ -60,6 +60,11 @@ experience:
   position: Machine Learning Engineer Intern on MindSpore (Chinese Huggingface 🤗)
   date: Apr. 2023 - Sep. 2023
 
+service:
+- role: Reviewer
+  venues: NeurIPS, TCSVT, MTA
+  note: 200+ papers reviewed
+
 awards:
 - name: National Scholarship Award, PRC
   date: 2021
