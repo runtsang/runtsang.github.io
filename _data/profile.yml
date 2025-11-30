@@ -43,7 +43,7 @@ short_bio: >-
     </span>
   </p>
 
-portrait_url: /assets/images/photos/2025.JPG
+portrait_url: /assets/images/photos/run.JPG
 portrait_caption: >-
   You find the easter egg!
 
@@ -75,3 +75,10 @@ awards:
   date: 2022
 # - name: A quick brown fox jumps over the lazy dog and runs away award
 #   date: 2021
+
+current_working:
+  ongoing:
+    - First-author, Reinforcement Learning, Efficient Reasoning, Qwen
+  under_review:
+    - First-author, AI Agents, GPT-OSS-20b, Qwen, Coding Agents, New Datasets
+    - First-author, Efficient Training, Qwen, Llama
