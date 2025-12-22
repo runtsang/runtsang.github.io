@@ -13,7 +13,7 @@
                     {% for raw_item in site.data.profile.current_working.ongoing %}
                     {% assign parts = raw_item | split: "," %}
                     <li class="my-2">
-                        <span class="interest-tag tag-black-frame">Paper {{ alphabet[paper_idx] }}</span>
+                        <b>Paper {{ alphabet[paper_idx] }}:</b>
                         {% assign paper_idx = paper_idx | plus: 1 %}
                         {% for part in parts %}
                         {% assign tag = part | strip %}
@@ -49,7 +49,7 @@
                     {% for raw_item in site.data.profile.current_working.under_review %}
                     {% assign parts = raw_item | split: "," %}
                     <li class="my-2">
-                        <span class="interest-tag tag-black-frame">Paper {{ alphabet[paper_idx] }}</span>
+                        <b>Paper {{ alphabet[paper_idx] }}:</b>
                         {% assign paper_idx = paper_idx | plus: 1 %}
                         {% for part in parts %}
                         {% assign tag = part | strip %}
