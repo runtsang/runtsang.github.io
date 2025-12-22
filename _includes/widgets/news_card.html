@@ -1,17 +1,23 @@
-{% assign news_by_year = site.news | sort: "date" | reverse | slice: 0, include.limit | group_by_exp: "item", "item.date | date: '%Y'" -%}
+{% assign all_news = site.news | sort: "date" | reverse -%}
+{% assign visible_news = all_news | slice: 0, 3 -%}
+{% assign hidden_news = all_news | slice: 3, all_news.size -%}
+
+{% assign visible_news_by_year = visible_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
+{% assign hidden_news_by_year = hidden_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
 
 <div class="my-3 bg-white shadow-sm rounded-sm">
     <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fas fa-rss"></i> News</h6>
     <div class="px-3 pb-1">
-        {% for year in news_by_year %}
-        <div class="media py-1 {% if not_first -%}border-top border-gray{%- endif %}">
-            {% assign not_first = true %}
+        {% for year in visible_news_by_year %}
+        <div class="media py-1 {% if forloop.first == false -%}border-top border-gray{%- endif %}">
             <div class="mr-3 text-muted my-1">{{ year.name }}</div>
             <div class="media-body">
                 {% for item in year.items %}
                 <div class="my-1 d-flex">
                     <div>
-                        {% if item.accepted == true or item.accepted == 'yes' %}<a href="{{ item.link }}"><span class="text-primary">[{{ item.con }}]</span></a>{% else %}<span class="text-muted">[{{ item.con }}]</span>{% endif %}
+                        {% if item.accepted == true or item.accepted == 'yes' %}<a href="{{ item.link }}"><span
+                                class="text-primary">[{{ item.con }}]</span></a>{% else %}<span class="text-muted">[{{
+                            item.con }}]</span>{% endif %}
                         {{ item.title }}
                     </div>
                     <div class="ml-auto mt-auto text-muted no-break"><i>{{ item.date | date: "%b %d" }}</i></div>
@@ -20,5 +26,56 @@
             </div>
         </div>
         {% endfor %}
+
+        {% if hidden_news.size > 0 %}
+        <div id="more-news" class="collapse">
+            {% for year in hidden_news_by_year %}
+            <div class="media py-1 border-top border-gray">
+                <div class="mr-3 text-muted my-1">{{ year.name }}</div>
+                <div class="media-body">
+                    {% for item in year.items %}
+                    <div class="my-1 d-flex">
+                        <div>
+                            {% if item.accepted == true or item.accepted == 'yes' %}<a href="{{ item.link }}"><span
+                                    class="text-primary">[{{ item.con }}]</span></a>{% else %}<span
+                                class="text-muted">[{{ item.con }}]</span>{% endif %}
+                            {{ item.title }}
+                        </div>
+                        <div class="ml-auto mt-auto text-muted no-break"><i>{{ item.date | date: "%b %d" }}</i></div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center border-top border-gray py-2">
+            <a href="javascript:void(0);" class="text-muted" data-toggle="collapse" data-target="#more-news"
+                aria-expanded="false" aria-controls="more-news" id="more-news-btn">
+                Show More <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+        {% endif %}
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var btn = document.getElementById('more-news-btn');
+        var target = document.getElementById('more-news');
+        if (btn && target) {
+            target.addEventListener('show.bs.collapse', function () {
+                btn.innerHTML = 'Show Less <i class="fas fa-chevron-up"></i>';
+            });
+            target.addEventListener('hide.bs.collapse', function () {
+                btn.innerHTML = 'Show More <i class="fas fa-chevron-down"></i>';
+            });
+            // Fallback for versions of Bootstrap that don't trigger BS events on pure target
+            $('#more-news').on('shown.bs.collapse', function () {
+                btn.innerHTML = 'Show Less <i class="fas fa-chevron-up"></i>';
+            });
+            $('#more-news').on('hidden.bs.collapse', function () {
+                btn.innerHTML = 'Show More <i class="fas fa-chevron-down"></i>';
+            });
+        }
+    });
+</script>

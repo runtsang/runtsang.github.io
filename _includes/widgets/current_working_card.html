@@ -7,9 +7,28 @@
                 <div class="my-1">
                     <span style="color:#fb6a21; font-weight: bold;">[Ongoing]</span>
                 </div>
-                <ul class="mb-1 pl-3">
-                    {% for item in site.data.profile.current_working.ongoing %}
-                    <li>{{ item }}</li>
+                <ul class="mb-1 pl-3 list-unstyled">
+                    {% for raw_item in site.data.profile.current_working.ongoing %}
+                    {% assign parts = raw_item | split: "," %}
+                    <li class="my-2">
+                        {% for part in parts %}
+                        {% assign tag = part | strip %}
+                        {% if forloop.first %}
+                        <span class="interest-tag tag-black-frame">{{ tag }}</span>
+                        {% else %}
+                        {% assign tag_clean = tag | downcase %}
+                        {% if tag_clean == "llms" %}{% assign color_idx = 1 %}
+                        {% elsif tag_clean == "genai" %}{% assign color_idx = 2 %}
+                        {% elsif tag_clean == "agentic ai" %}{% assign color_idx = 3 %}
+                        {% elsif tag_clean == "llms adptation" %}{% assign color_idx = 4 %}
+                        {% elsif tag_clean == "llms training" %}{% assign color_idx = 5 %}
+                        {% elsif tag_clean == "reasoning" %}{% assign color_idx = 6 %}
+                        {% elsif tag_clean == "rl" %}{% assign color_idx = 7 %}
+                        {% else %}{% assign color_idx = forloop.index | modulo: 7 | plus: 1 %}{% endif %}
+                        <span class="interest-tag tag-monet-{{ color_idx }}">{{ tag }}</span>
+                        {% endif %}
+                        {% endfor %}
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -22,9 +41,28 @@
                 <div class="my-1">
                     <span style="color:#fb6a21; font-weight: bold;">[Under Review]</span>
                 </div>
-                <ul class="mb-1 pl-3">
-                    {% for item in site.data.profile.current_working.under_review %}
-                    <li>{{ item }}</li>
+                <ul class="mb-1 pl-3 list-unstyled">
+                    {% for raw_item in site.data.profile.current_working.under_review %}
+                    {% assign parts = raw_item | split: "," %}
+                    <li class="my-2">
+                        {% for part in parts %}
+                        {% assign tag = part | strip %}
+                        {% if forloop.first %}
+                        <span class="interest-tag tag-black-frame">{{ tag }}</span>
+                        {% else %}
+                        {% assign tag_clean = tag | downcase %}
+                        {% if tag_clean == "llms" %}{% assign color_idx = 1 %}
+                        {% elsif tag_clean == "genai" %}{% assign color_idx = 2 %}
+                        {% elsif tag_clean == "agentic ai" %}{% assign color_idx = 3 %}
+                        {% elsif tag_clean == "llms adptation" %}{% assign color_idx = 4 %}
+                        {% elsif tag_clean == "llms training" %}{% assign color_idx = 5 %}
+                        {% elsif tag_clean == "reasoning" %}{% assign color_idx = 6 %}
+                        {% elsif tag_clean == "rl" %}{% assign color_idx = 7 %}
+                        {% else %}{% assign color_idx = forloop.index | modulo: 7 | plus: 1 %}{% endif %}
+                        <span class="interest-tag tag-monet-{{ color_idx }}">{{ tag }}</span>
+                        {% endif %}
+                        {% endfor %}
+                    </li>
                     {% endfor %}
                 </ul>
             </div>

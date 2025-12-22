@@ -1,0 +1,63 @@
+{% if site.data.profile.experience %}
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <div class="mx-2 my-1">
+                    <h6>Experience</h6>
+                    <div class="exp-list mt-2">
+                        {% for item in site.data.profile.experience %}
+                        <div class="exp-item">
+                            <div class="exp-header">
+                                <div class="exp-company-name">
+                                    {% if item.logo %}
+                                    <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" class="exp-logo">
+                                    {% endif %}
+                                    {{ item.name }}
+                                </div>
+                                <span class="exp-date">{{ item.date }}</span>
+                            </div>
+                            <div class="exp-sub-header">
+                                <span class="exp-role">{{ item.position }}</span>
+                                {% if item.location %}
+                                <span class="exp-location">{{ item.location }}</span>
+                                {% endif %}
+                            </div>
+                            {% if item.details %}
+                            <div class="exp-desc">
+                                {{ item.details }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Scroll-Triggered Animation for Experience Timeline
+        const expItems = document.querySelectorAll('.exp-item');
+        const observerOptions = {
+            root: null,
+            rootMargin: '-48% 0px -48% 0px',
+            threshold: 0
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active-mobile');
+                } else {
+                    entry.target.classList.remove('active-mobile');
+                }
+            });
+        }, observerOptions);
+        expItems.forEach(item => {
+            observer.observe(item);
+        });
+    });
+</script>
+{% endif %}

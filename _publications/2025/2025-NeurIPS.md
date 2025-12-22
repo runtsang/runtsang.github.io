@@ -7,6 +7,8 @@ pub:            "Conference on Neural Information Processing Systems"
 # pub_post:       'Under review.'
 pub_last:       ' <span class="badge badge-pill badge-publication badge-success">NeurIPS</span>'
 pub_date:       "2025"
+interests:      ["LLMs Training", "LLMs", "GenAI"]
+note:           "Pre Training"
 
 abstract: >-
   We introduce Probabilistic Token Alignment (PTA) for large language model fusion, reformulating token alignment as an optimal transport problem. PTA enhances performance and generality through distribution-aware learning while offering interpretability from a distributional perspective, which provides deeper insights into token alignment.

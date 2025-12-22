@@ -28,20 +28,28 @@ short_bio: >-
     I am currently a second-year PhD student at RIT, advised by Prof. <a href="https://dongfang-liu.github.io/" target="_blank">Dongfang Liu</a>.
   </p>
   <p>
-    Research Interests: LLMs Adptation, Efficient Reasoning, LLMs Training, Reinforcement Learning, AI Agents
+    Research Interests: 
+    <span class="interest-tag tag-monet-1">LLMs</span>
+    <span class="interest-tag tag-monet-2">GenAI</span>
+    <span class="interest-tag tag-monet-3">Agentic AI</span>
+    <span class="interest-tag tag-monet-4">LLMs Adptation</span>
+    <span class="interest-tag tag-monet-5">LLMs Training</span>
+    <span class="interest-tag tag-monet-6">Reasoning</span>
+    <span class="interest-tag tag-monet-7">RL</span>
   </p>
   <hr>
   <p>
-    Personal email: runjia@<span style='color:#1986d5;'>msn.com</span> (Preferred)
+    University email: rz4545@<span style='color:#fb6a21;'>rit.edu</span> (Preferred) / run@<span style='color:#fb6a21;'>mail.rit.edu</span>
   </p>
   <p>
-    University email: rz4545@<span style='color:#fb6a21;'>rit.edu</span> / run@<span style='color:#fb6a21;'>mail.rit.edu</span>
+    Personal email: runjia@<span style='color:#1986d5;'>msn.com</span>
   </p>
-  <p>
-    <span style="display:inline-block; padding:6px 10px; background:#f2f2f2; border:2px solid #000; border-radius:10px;">
-      <span style="color:#f37939;">Looking for a summer '26 internship!! 🙏</span>
-    </span>
-  </p>
+  <div class="status-banner">
+    <div style="font-size: 1rem;">🔥</div>
+    <div>
+      I am actively looking for research internship opportunities in LLMs, Agentic AI and GenAI for 2026 (Summer/Fall).
+    </div>
+  </div>
 
 portrait_url: /assets/images/photos/run.JPG
 portrait_caption: >-
@@ -58,10 +66,26 @@ education:
   date: Sep. 2020 - May. 2024
 
 experience:
-- name: Institute of Software Chinese Academy of Sciences
-  # logo: /assets/images/badges/iscas.png
-  position: Machine Learning Engineer Intern on MindSpore (Chinese Huggingface 🤗) 900+ Stars, 500+ Issues, 1,700+ PRs.
+- name: Institute of Software Chinese Academy of Sciences (ISCAS)
+  logo: /assets/images/badges/iscas.png
+  position: Machine Learning Engineer Intern
+  location: Shenzhen, China
   date: Apr. 2023 - Sep. 2023
+  details: >-
+    Worked on <b>MindSpore</b> (Chinese Huggingface 🤗)
+    <ul>
+      <li>Contributed to a community with 900+ Stars, 500+ Issues, and 1,700+ PRs.</li>
+      <li>Provided users with a easy-to-use and high-performance SOTA LLMs. </li>
+    </ul>
+- name: China Robot Competition & Robocup China Open
+  position: Team Leader
+  location: Fuzhou, China
+  date: Sep. 2021 - Jan. 2022
+  details: >-
+    <ul>
+      <li>Using six drones, the system successfully detected and tracked all six moving targets within 57 seconds, with zero collisions.</li>
+      <li>Our vision-only approach won the 2022 RoboCup China Open national championship, outperforming a LiDAR-based system from Tsinghua University. </li>
+    </ul>
 
 service:
 - role: Reviewer
