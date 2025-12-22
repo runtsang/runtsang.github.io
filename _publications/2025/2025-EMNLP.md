@@ -7,7 +7,7 @@ pub:            "Conference on Empirical Methods in Natural Language Processing"
 # pub_post:       'Under review.'
 pub_last:       ' <span class="badge badge-pill badge-publication badge-success">EMNLP</span>'
 pub_date:       "2025"
-interests:      [LLMs Adptation, "LLMs", "MoE", "Prompt Tuning"]
+interests:      [LLMs Adaptation, "LLMs", "MoE", "Prompt Tuning"]
 note:           "Fine Tuning"
 
 abstract: >-

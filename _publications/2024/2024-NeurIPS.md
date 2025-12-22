@@ -7,7 +7,7 @@ pub:            "Conference on Neural Information Processing Systems"
 # pub_post:       'Under review.'
 pub_last:       ' <span class="badge badge-pill badge-publication badge-success">NeurIPS</span>'
 pub_date:       "2024"
-interests:      [LLMs Adptation, "CV", "Prompt Tuning", "Fourier Transform"]
+interests:      [LLMs Adaptation, "CV", "Prompt Tuning", "Fourier Transform"]
 note:           "Fine Tuning"
 
 abstract: >-
