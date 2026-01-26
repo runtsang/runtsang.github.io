@@ -89,7 +89,7 @@ experience:
 
 service:
 - role: Reviewer
-  venues: NeurIPS, TCSVT, MTA
+  venues: NeurIPS, ICML, TCSVT, MTA
   note: 200+ papers reviewed
 
 awards:
@@ -105,4 +105,4 @@ current_working:
     - First-author, Reinforcement Learning, Efficient Reasoning, Qwen
   under_review:
     - First-author, AI Agents, GPT-OSS-20b, Qwen, Coding Agents, New Datasets
-    - First-author, Efficient Training, Qwen, Llama
+    - Diffusion Model, Survey
