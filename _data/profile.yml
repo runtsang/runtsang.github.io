@@ -102,7 +102,7 @@ awards:
 
 current_working:
   ongoing:
-    - First-author, Reinforcement Learning, Efficient Reasoning, Qwen
+    - First-author, Reinforcement Learning, Efficient Reasoning
   under_review:
-    - First-author, AI Agents, GPT-OSS-20b, Qwen, Coding Agents, New Datasets
-    - Diffusion Model, Survey
+    - First-author, AI Agents, GPT-OSS-20b, Coding Agents, New Datasets
+    - Third-author, Survey Paper, Diffusion Language Models, LLMs
