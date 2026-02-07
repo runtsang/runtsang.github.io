@@ -7,16 +7,16 @@ navbar_title: Home
 
 {% include widgets/url_debug_message.html %}
 
-{% if site.data.display.homepage.show_experience %}
-{% include widgets/experience_card.html %}
-{% include widgets/experience_timeline_card.html %}
-{% endif %}
-
 {% if site.data.display.homepage.show_news %}
-{% assign count_news = site.news | size %}
+{% assign count_news = site.data.profile.news | size %}
 {% if count_news > 0 %}
 {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
 {% endif %}
+{% endif %}
+
+{% if site.data.display.homepage.show_experience %}
+{% include widgets/experience_card.html %}
+{% include widgets/experience_timeline_card.html %}
 {% endif %}
 
 {% if site.data.display.homepage.show_selected_publications %}

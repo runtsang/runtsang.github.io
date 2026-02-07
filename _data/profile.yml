@@ -8,7 +8,7 @@ positions:
 # - name: Position 2 without logo
 
 
-email: "runjia@msn.com"
+email: "run@mail.rit.edu"
 # cv_link: link-to-your-cv-file
 gscholar: iiLwKSsAAAAJ  # This is an example, replace it with your own Google Scholar ID
 github: runtsang
@@ -47,7 +47,7 @@ short_bio: >-
   <div class="status-banner">
     <div style="font-size: 1rem;">🔥</div>
     <div>
-      I am actively looking for research internship opportunities in LLMs, Agentic AI and GenAI for 2026 (Summer/Fall).
+      I am actively looking for research internship opportunities in LLMs, Agentic AI and GenAI for 2026 (Fall) and 2027 (Spring / Summer).
     </div>
   </div>
 
@@ -90,7 +90,7 @@ experience:
 service:
 - role: Reviewer
   venues: NeurIPS, ICML, TCSVT, MTA
-  note: 200+ papers reviewed
+  note: 300+ papers reviewed
 
 awards:
 - name: National Scholarship Award, PRC
@@ -106,3 +106,41 @@ current_working:
   under_review:
     - First-author, AI Agents, GPT-OSS-20b, Coding Agents, New Datasets
     - Third-author, Survey Paper, Diffusion Language Models, LLMs
+
+news:
+  - con: Internship
+    accepted: true
+    title: "I will be joining Oracle as a Applied Scientist Intern in NYC in the Summer of 2026. 🗽🌃"
+    date: 2026-02-06 08:00:00 -0400
+  - con: ICLR
+    accepted: true
+    link: https://runjia.tech/iclr_tokenseek/
+    title: "One first-author paper accepted to ICLR 2026. 🎉‼️"
+    date: 2026-01-26 08:00:00 -0400
+  - con: NeurIPS
+    accepted: true
+    link: https://runjia.tech/neurips_pta-llm/
+    title: "One first-author paper accepted to NeurIPS 2025. 🍾🥂"
+    date: 2025-09-18 08:00:00 -0400
+  - con: RIT
+    accepted: true
+    title: "I am so honored to be an Orientation Leader for RIT NSO '25. Love y'all in Team 8 and Group 8E. 🧡🐅"
+    date: 2025-08-24 08:00:00 -0400
+  - con: EMNLP
+    accepted: true
+    link: https://runjia.tech/mept_page/
+    title: "One first-author paper accepted to EMNLP 2025. Phew, finally!"
+    date: 2025-08-20 08:00:00 -0400
+  - con: IJCV
+    accepted: false
+    title: "One third-author paper on Vision-Language Model got rejected. Patpat."
+    date: 2025-07-01 08:00:00 -0400
+  - con: ICLR
+    accepted: false
+    title: "One first-author paper on LLMs got rejected! Keep running :/"
+    date: 2025-01-22 12:45:00 -0400
+  - con: NeurIPS
+    accepted: true
+    link: https://runjia.tech/vfpt_page/
+    title: "One first-author paper accepted to NeurIPS 2024. The FIRST step!"
+    date: 2024-09-25 12:45:00 -0400

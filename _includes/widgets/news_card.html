@@ -1,6 +1,7 @@
-{% assign all_news = site.news | sort: "date" | reverse -%}
-{% assign visible_news = all_news | slice: 0, 3 -%}
-{% assign hidden_news = all_news | slice: 3, all_news.size -%}
+{% assign all_news = site.data.profile.news | sort: "date" | reverse -%}
+{% assign limit = include.limit | default: 3 %}
+{% assign visible_news = all_news | slice: 0, limit -%}
+{% assign hidden_news = all_news | slice: limit, all_news.size -%}
 
 {% assign visible_news_by_year = visible_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
 {% assign hidden_news_by_year = hidden_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
