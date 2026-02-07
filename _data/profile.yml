@@ -66,15 +66,14 @@ education:
   date: Sep. 2020 - May. 2024
 
 experience:
-- name: Institute of Software Chinese Academy of Sciences (ISCAS)
-  logo: /assets/images/badges/iscas.png
-  position: Machine Learning Engineer Intern
+- name: <b>MindSpore</b> (Chinese Huggingface 🤗) Community Contributor
+  position: Contributor / Intern
   location: Shenzhen, China
   date: Apr. 2023 - Sep. 2023
   details: >-
-    Worked on <b>MindSpore</b> (Chinese Huggingface 🤗)
+    Github: <a href="https://github.com/mindspore-lab/mindnlp" target="_blank">https://github.com/mindspore-lab/mindnlp</a>
     <ul>
-      <li>Contributed to a community with 900+ Stars, 500+ Issues, and 1,700+ PRs.</li>
+      <li>Contributed to a community with 900+ Stars, 500+ Issues, and 1,800+ PRs.</li>
       <li>Provided users with a easy-to-use and high-performance SOTA LLMs. </li>
     </ul>
 - name: China Robot Competition & Robocup China Open
