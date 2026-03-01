@@ -66,9 +66,16 @@ education:
   date: Sep. 2020 - May. 2024
 
 experience:
-- name: <b>MindSpore</b> (Chinese Huggingface 🤗) Community Contributor
+- name: RebuttalStudio
+  position: Project Lead
+  date: Feb. 2026 - Mar. 2026
+  details: >-
+    Github: <a href="https://github.com/runtsang/RebuttalStudio" target="_blank">https://github.com/runtsang/RebuttalStudio</a>
+    <ul>
+      <li>A rebuttal editor for researchers to craft high-quality academic rebuttals.</li>
+    </ul>
+- name: MindSpore (Chinese Huggingface 🤗)
   position: Contributor / Intern
-  location: Shenzhen, China
   date: Apr. 2023 - Sep. 2023
   details: >-
     Github: <a href="https://github.com/mindspore-lab/mindnlp" target="_blank">https://github.com/mindspore-lab/mindnlp</a>
@@ -77,8 +84,7 @@ experience:
       <li>Provided users with a easy-to-use and high-performance SOTA LLMs. </li>
     </ul>
 - name: China Robot Competition & Robocup China Open
-  position: Team Leader
-  location: Fuzhou, China
+  position: Team Lead
   date: Sep. 2021 - Jan. 2022
   details: >-
     <ul>
