@@ -1,5 +1,6 @@
 ---
 title:          "Visual Fourier Prompt Tuning"
+github_repo:    "runtsang/VFPT"
 date:           2024-09-25 12:01:00 +0800
 selected:       true
 pub:            "Conference on Neural Information Processing Systems"

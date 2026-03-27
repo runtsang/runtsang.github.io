@@ -11,8 +11,14 @@
             {%- endif -%}
         </div>
         <div class="col-md-9 col-xl-10 p-3 pl-md-0">
-            <h5 class="mt-0 mb-1 font-weight-normal">{{ item.title }}</h5>
-
+            <h5 class="mt-0 mb-1 font-weight-normal" style="display: flex; align-items: center; flex-wrap: wrap;">
+                {{ item.title }}
+                {% if item.github_repo %}
+                <a href="https://github.com/{{ item.github_repo }}" target="_blank" style="display: inline-flex; align-items: center; text-decoration: none; margin-left: 8px;">
+                    <img src="https://img.shields.io/github/stars/{{ item.github_repo }}?style=social" alt="GitHub stars">
+                </a>
+                {% endif %}
+            </h5>
             {% if item.note or item.interests %}
             <div class="mt-1 mb-2">
                 {% if item.note %}
@@ -58,8 +64,14 @@
         <div class="d-flex align-items-start flex-column py-3 px-4">
             <div class="mb-auto"></div>
             <div>
-                <h5 class="mt-0 mb-1 font-weight-normal">{{ item.title }}</h5>
-
+                <h5 class="mt-0 mb-1 font-weight-normal" style="display: flex; align-items: center; flex-wrap: wrap;">
+                    {{ item.title }}
+                    {% if item.github_repo %}
+                    <a href="https://github.com/{{ item.github_repo }}" target="_blank" style="display: inline-flex; align-items: center; text-decoration: none; margin-left: 8px;">
+                        <img src="https://img.shields.io/github/stars/{{ item.github_repo }}?style=social" alt="GitHub stars">
+                    </a>
+                    {% endif %}
+                </h5>
                 {% if item.note or item.interests %}
                 <div class="mt-1 mb-2">
                     {% if item.note %}

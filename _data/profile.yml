@@ -67,6 +67,7 @@ education:
 
 experience:
 - name: RebuttalStudio
+  github_repo: runtsang/RebuttalStudio
   position: Project Lead
   date: Feb. 2026 - Mar. 2026
   details: >-
@@ -75,6 +76,7 @@ experience:
       <li>A rebuttal editor for researchers to craft high-quality academic rebuttals.</li>
     </ul>
 - name: MindSpore (Chinese Huggingface 🤗)
+  github_repo: mindspore-lab/mindnlp
   position: Contributor / Intern
   date: Apr. 2023 - Sep. 2023
   details: >-

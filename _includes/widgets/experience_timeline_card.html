@@ -9,11 +9,18 @@
                         {% for item in site.data.profile.experience %}
                         <div class="exp-item">
                             <div class="exp-header">
-                                <div class="exp-company-name">
-                                    {% if item.logo %}
-                                    <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" class="exp-logo">
+                                <div class="exp-company-name" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                    <div>
+                                        {% if item.logo %}
+                                        <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" class="exp-logo">
+                                        {% endif %}
+                                        {{ item.name }}
+                                    </div>
+                                    {% if item.github_repo %}
+                                    <a href="https://github.com/{{ item.github_repo }}" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
+                                        <img src="https://img.shields.io/github/stars/{{ item.github_repo }}?style=social" alt="GitHub stars">
+                                    </a>
                                     {% endif %}
-                                    {{ item.name }}
                                 </div>
                                 <span class="exp-date">{{ item.date }}</span>
                             </div>
