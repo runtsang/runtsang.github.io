@@ -1,5 +1,5 @@
 ---
-title:          "Visual Fourier Prompt Tuning"
+title:          "Visual Fourier Prompt Tuning <a href='https://www.youtube.com/watch?v=jrrZ4BlfeyM' target='_blank' style='color:red;'>[Media Coverage🎙️]</a>"
 github_repo:    "runtsang/VFPT"
 date:           2024-09-25 12:01:00 +0800
 selected:       true
