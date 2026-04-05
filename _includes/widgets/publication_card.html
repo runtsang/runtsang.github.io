@@ -1,14 +1,56 @@
 {% assign publications = include.publications %}
-<div class="my-3 p-0 bg-white shadow-sm rounded-sm">
-    <h6 class="border-bottom border-gray p-3 mb-0">
-        {% if include.title %}{{ include.title }}{% else %}<i class="fas fa-star"></i> Selected Recent Publications{% endif %} 
-        <a href="{{ 'publications' | relative_url }}">(view all <i class="fas fa-angle-double-right"></i>)</a>
-    </h6>
-    {% for item in publications limit:include.limit %}
-        {% include widgets/publication_item.html item=item first=false last=false %}    
-    {% endfor %}
+{% assign highlight_pubs = publications | where_exp: "item", "item.publication_groups contains 'highlights'" %}
+{% assign lead_pubs = publications | where_exp: "item", "item.publication_groups contains 'lead'" %}
+{% assign other_pubs = publications | where_exp: "item", "item.publication_groups contains 'others'" %}
+{% assign ungrouped_pubs = publications | where_exp: "item", "item.publication_groups == nil" %}
+{% assign empty_group_pubs = publications | where_exp: "item", "item.publication_groups == empty" %}
+{% assign other_pubs = other_pubs | concat: ungrouped_pubs | concat: empty_group_pubs %}
+<div class="my-3 p-0 bg-white shadow-sm rounded-sm publication-section">
+    <div class="border-bottom border-gray p-3 mb-0">
+        <div class="publication-card-header">
+            <h6 class="mb-0">
+                {% if include.title %}{{ include.title }}{% else %}Publications{% endif %}
+            </h6>
+            <a href="{{ 'publications' | relative_url }}">(view all <i class="fas fa-angle-double-right"></i>)</a>
+        </div>
+        <div class="publication-filter-bar mt-3" role="tablist" aria-label="Publication categories">
+            <button type="button" class="publication-filter-btn active" data-group="highlights" aria-pressed="true">🌟 Highlights</button>
+            <button type="button" class="publication-filter-btn" data-group="lead" aria-pressed="false">🥇 Lead Contributions</button>
+            <button type="button" class="publication-filter-btn" data-group="others" aria-pressed="false">💾 Others</button>
+        </div>
+    </div>
+
+    <div class="publication-filter-panel" data-group="highlights">
+        {% if highlight_pubs.size > 0 %}
+        {% for item in highlight_pubs limit:include.limit %}
+            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
+        {% endfor %}
+        {% else %}
+        <div class="publication-empty-state">No highlight publications yet.</div>
+        {% endif %}
+    </div>
+
+    <div class="publication-filter-panel d-none" data-group="lead">
+        {% if lead_pubs.size > 0 %}
+        {% for item in lead_pubs limit:include.limit %}
+            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
+        {% endfor %}
+        {% else %}
+        <div class="publication-empty-state">No lead-contribution publications yet.</div>
+        {% endif %}
+    </div>
+
+    <div class="publication-filter-panel d-none" data-group="others">
+        {% if other_pubs.size > 0 %}
+        {% for item in other_pubs limit:include.limit %}
+            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
+        {% endfor %}
+        {% else %}
+        <div class="publication-empty-state">More publications will appear here.</div>
+        {% endif %}
+    </div>
+
     <h6 class="d-block p-3 mt-0 text-right">
         <a href="{{ 'publications' | relative_url }}">All publications <i class="fas fa-angle-double-right"></i></a>
     </h6>
 </div>
-

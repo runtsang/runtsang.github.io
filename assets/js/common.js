@@ -38,4 +38,16 @@ $(function () {
     $(".lazy").on("load", function () {
         $grid.masonry('layout');
     });
+
+    $('.publication-filter-btn').on('click', function () {
+        var $button = $(this);
+        var group = $button.data('group');
+        var $section = $button.closest('.publication-section');
+
+        $section.find('.publication-filter-btn').removeClass('active').attr('aria-pressed', 'false');
+        $button.addClass('active').attr('aria-pressed', 'true');
+
+        $section.find('.publication-filter-panel').addClass('d-none');
+        $section.find('.publication-filter-panel[data-group="' + group + '"]').removeClass('d-none');
+    });
 })

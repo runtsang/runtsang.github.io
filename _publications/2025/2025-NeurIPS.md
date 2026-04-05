@@ -2,6 +2,7 @@
 title:          "Probabilistic Token Alignment for Large Language Model Fusion"
 date:           2025-09-18 12:01:00 +0800
 selected:       true
+publication_groups: [highlights, lead]
 pub:            "Conference on Neural Information Processing Systems"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'

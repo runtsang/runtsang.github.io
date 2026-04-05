@@ -2,6 +2,7 @@
 title:          "MEPT: Mixture of Experts Prompt Tuning as a Manifold Mapper"
 date:           2025-08-20 12:01:00 +0800
 selected:       true
+publication_groups: [highlights, lead]
 pub:            "Conference on Empirical Methods in Natural Language Processing"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
