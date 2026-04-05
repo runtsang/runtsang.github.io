@@ -14,13 +14,24 @@
             <a href="{{ 'publications' | relative_url }}">(view all <i class="fas fa-angle-double-right"></i>)</a>
         </div>
         <div class="publication-filter-bar mt-3" role="tablist" aria-label="Publication categories">
-            <button type="button" class="publication-filter-btn active" data-group="highlights" aria-pressed="true">🌟 Highlights</button>
+            <button type="button" class="publication-filter-btn active" data-group="all" aria-pressed="true">📑 ALL</button>
+            <button type="button" class="publication-filter-btn" data-group="highlights" aria-pressed="false">🌟 Highlights</button>
             <button type="button" class="publication-filter-btn" data-group="lead" aria-pressed="false">🥇 Lead Contributions</button>
             <button type="button" class="publication-filter-btn" data-group="others" aria-pressed="false">💾 Others</button>
         </div>
     </div>
 
-    <div class="publication-filter-panel" data-group="highlights">
+    <div class="publication-filter-panel" data-group="all">
+        {% if publications.size > 0 %}
+        {% for item in publications limit:include.limit %}
+            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
+        {% endfor %}
+        {% else %}
+        <div class="publication-empty-state">No publications yet.</div>
+        {% endif %}
+    </div>
+
+    <div class="publication-filter-panel d-none" data-group="highlights">
         {% if highlight_pubs.size > 0 %}
         {% for item in highlight_pubs limit:include.limit %}
             {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
