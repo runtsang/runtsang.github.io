@@ -65,6 +65,13 @@ education:
   position: B. Eng in Computer Science and Technology
   date: Sep. 2020 - May. 2024
 
+work_experience:
+- name: Oracle
+  logo: /assets/images/oracle-logo.svg
+  position: Applied Scientist Intern
+  location: New York City
+  date: May. 2026 - Aug. 2026
+
 experience:
 - name: RebuttalStudio
   github_repo: runtsang/RebuttalStudio

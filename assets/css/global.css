@@ -181,6 +181,23 @@ div.lazy {
     object-fit: contain;
 }
 
+.work-exp-item::before {
+    display: none;
+}
+
+.work-exp-marker {
+    position: absolute;
+    left: -36px;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #c74634;
+    border: 1px solid #e5e7eb;
+    z-index: 1;
+}
+
 
 /* --- Status Banner --- */
 .status-banner {
