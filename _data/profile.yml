@@ -25,7 +25,7 @@ short_bio: >-
     Hi! It's Run here! ツ 
   </p>
   <p>
-    I am currently a second-year PhD student at RIT, advised by Prof. <a href="https://dongfang-liu.github.io/" target="_blank">Dongfang Liu</a>.
+    I am currently a third-year PhD student at RIT, advised by Prof. <a href="https://dongfang-liu.github.io/" target="_blank">Dongfang Liu</a>.
   </p>
   <p>
     Research Interests: 
@@ -47,7 +47,7 @@ short_bio: >-
   <div class="status-banner">
     <div style="font-size: 1rem;">🔥</div>
     <div>
-      I am actively looking for research internship opportunities in LLMs, Agentic AI and GenAI for 2026 (Fall) and 2027 (Spring / Summer).
+      I am actively looking for research full-time / internship opportunities in Reasoning, RL and Agentic AI for 2027 Spring (internshp) or 2027 Summer (full-time).
     </div>
   </div>
 
@@ -59,7 +59,7 @@ education:
 - name: Rochester Institute of Technology
   logo: /assets/images/badges/RIT_orange.jpg
   position: Ph.D. Student in Electrical and Computer Engineering
-  date: Aug. 2024 - ~2027 (Expected)
+  date: Aug. 2024 - May 2027 (Expected)
 - name: Guangdong University of Technology <span style='color:#0070f8;'>[Honors Program]</span>
   logo: /assets/images/badges/Guangdong_University_of_Technology_Logo.svg.png
   position: B. Eng in Computer Science and Technology
@@ -71,6 +71,11 @@ work_experience:
   position: Applied Scientist Intern
   location: New York City
   date: May. 2026 - Aug. 2026
+  details: >-
+    Github: <a href="https://www.oracle.com/apac/application-development/code-assist/" target="_blank">https://www.oracle.com/apac/application-development/code-assist/</a>
+    <ul>
+      <li>Improving the generalization of machine learning engineering agents on DS-Bench and MLE-Bench.</li>
+    </ul>
 
 experience:
 - name: RebuttalStudio
@@ -84,7 +89,7 @@ experience:
     </ul>
 - name: MindSpore (Chinese Huggingface 🤗)
   github_repo: mindspore-lab/mindnlp
-  position: Contributor / Intern
+  position: Contributor
   date: Apr. 2023 - Sep. 2023
   details: >-
     Github: <a href="https://github.com/mindspore-lab/mindnlp" target="_blank">https://github.com/mindspore-lab/mindnlp</a>
@@ -92,7 +97,7 @@ experience:
       <li>Contributed to a community with 900+ Stars, 500+ Issues, and 1,800+ PRs.</li>
       <li>Provided users with a easy-to-use and high-performance SOTA LLMs. </li>
     </ul>
-- name: China Robot Competition & Robocup China Open
+- name: Robocup China Open
   position: Team Lead
   date: Sep. 2021 - Jan. 2022
   details: >-
@@ -103,7 +108,7 @@ experience:
 
 service:
 - role: Reviewer
-  venues: NeurIPS, ICML, TCSVT, MTA
+  venues: NeurIPS, ICML, AAAI, TCSVT, MTA
   note: 300+ papers reviewed
 
 awards:
@@ -121,6 +126,10 @@ current_working:
     - First-author, Reinforcement Learning, Efficient Reasoning
 
 news:
+  - con: RIT
+    accepted: true
+    title: "It was truly a pleasure to be a PAL for RIT INSO '26 and to receive the “Best sPAtuLa” award!! 🐅🌏"
+    date: 2026-08-23 08:00:00 -0400
   - con: Internship
     accepted: true
     title: "I will be joining Oracle as a Applied Scientist Intern in NYC in the Summer of 2026. 🗽🌃"
