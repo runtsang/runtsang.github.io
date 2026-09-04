@@ -1,6 +1,6 @@
-primary_name: "Runjia Zeng"
+primary_name: "Run Zeng"
 secondary_name: ""
-navbar_name: "Runjia Zeng"
+navbar_name: "Run Zeng"
 
 positions:
 - logo: /assets/images/badges/RIT_2018_logo_short_orange.svg.png  # Logo is optional
@@ -108,7 +108,7 @@ experience:
 
 service:
 - role: Reviewer
-  venues: NeurIPS, ICML, AAAI, TCSVT, MTA
+  venues: NeurIPS, ICML, ICLR, AAAI, TCSVT, MTA
   note: 300+ papers reviewed
 
 awards:
