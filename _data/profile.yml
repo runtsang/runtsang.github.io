@@ -47,7 +47,7 @@ short_bio: >-
   <div class="status-banner">
     <div style="font-size: 1rem;">🔥</div>
     <div>
-      I am actively looking for research full-time / internship opportunities in Reasoning, RL and Agentic AI for 2027 Spring (internshp) or 2027 Summer (full-time).
+      I am actively looking for full-time / new grad research opportunities in Reasoning, RL and Agentic AI after May 2027.
     </div>
   </div>
 
@@ -87,12 +87,12 @@ experience:
     <ul>
       <li>A rebuttal editor for researchers to craft high-quality academic rebuttals.</li>
     </ul>
-- name: MindSpore (Chinese Huggingface 🤗)
-  github_repo: mindspore-lab/mindnlp
+- name: MindAct
+  github_repo: candle-org/MindAct
   position: Contributor
   date: Apr. 2023 - Sep. 2023
   details: >-
-    Github: <a href="https://github.com/mindspore-lab/mindnlp" target="_blank">https://github.com/mindspore-lab/mindnlp</a>
+    Github: <a href="https://github.com/candle-org/MindAct" target="_blank">https://github.com/candle-org/MindAct</a>
     <ul>
       <li>Contributed to a community with 900+ Stars, 500+ Issues, and 1,800+ PRs.</li>
       <li>Provided users with a easy-to-use and high-performance SOTA LLMs. </li>
@@ -121,11 +121,12 @@ awards:
 # - name: A quick brown fox jumps over the lazy dog and runs away award
 #   date: 2021
 
-current_working:
-  ongoing:
-    - First-author, Reinforcement Learning, Efficient Reasoning
-
 news:
+  - con: NeurIPS
+    accepted: true
+    link: https://runjia.tech/tokenprobe/
+    title: "One first-author paper accepted to NeurIPS 2026. Back-to-back-to-back acceptances!! 🔍 💎"
+    date: 2026-09-27 08:00:00 -0400
   - con: RIT
     accepted: true
     title: "It was truly a pleasure to be a PAL for RIT INSO '26 and to receive the “Best sPAtuLa” award!! 🐅🌏"
