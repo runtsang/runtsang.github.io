@@ -22,6 +22,6 @@ authors:
   - Cheng Han
   - Dongfang Liu
 links:
-  Paper📑: "#"
+  Paper📑: https://arxiv.org/abs/2609.33970
   Homepage💻: https://runjia.tech/tokenprobe/
 ---
