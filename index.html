@@ -5,6 +5,14 @@ navbar_title: Home
 ---
 {% include widgets/profile_card.html %}
 
+<nav class="section-nav my-3 p-3 bg-white shadow-sm rounded-sm" aria-label="Homepage sections">
+    <a href="#news">News</a>
+    <a href="#education">Education</a>
+    <a href="#work-experience">Work Experience</a>
+    <a href="#project-experience">Project Experience</a>
+    <a href="#publications">Publications</a>
+</nav>
+
 
 {% include widgets/url_debug_message.html %}
 
@@ -31,5 +39,3 @@ title='Publications'
 {% endif %}
 
 {% include widgets/honors_service_card.html %}
-
-{% include widgets/about_me_card.html %}

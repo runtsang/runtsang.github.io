@@ -5,7 +5,7 @@
 {% assign ungrouped_pubs = publications | where_exp: "item", "item.publication_groups == nil" %}
 {% assign empty_group_pubs = publications | where_exp: "item", "item.publication_groups == empty" %}
 {% assign other_pubs = other_pubs | concat: ungrouped_pubs | concat: empty_group_pubs %}
-<div class="my-3 p-0 bg-white shadow-sm rounded-sm publication-section">
+<div id="publications" class="my-3 p-0 bg-white shadow-sm rounded-sm publication-section section-anchor">
     <div class="border-bottom border-gray p-3 mb-0">
         <div class="publication-card-header">
             <h6 class="mb-0">

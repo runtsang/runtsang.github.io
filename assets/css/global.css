@@ -326,3 +326,36 @@ div.lazy {
     color: #6b7280;
     font-size: 0.9rem;
 }
+
+
+.research-topic {
+    color: #F76902;
+    font-weight: 600;
+}
+
+.section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 24px;
+}
+
+.section-nav a {
+    padding: 4px 0;
+    font-weight: 600;
+}
+
+.section-nav a:focus-visible {
+    outline: 2px solid #F76902;
+    outline-offset: 4px;
+}
+
+.section-anchor {
+    scroll-margin-top: 5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}

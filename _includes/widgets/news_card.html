@@ -6,7 +6,7 @@
 {% assign visible_news_by_year = visible_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
 {% assign hidden_news_by_year = hidden_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
 
-<div class="my-3 bg-white shadow-sm rounded-sm">
+<div id="news" class="my-3 bg-white shadow-sm rounded-sm section-anchor">
     <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fas fa-rss"></i> News</h6>
     <div class="px-3 pb-1">
         {% for year in visible_news_by_year %}
