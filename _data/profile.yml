@@ -115,7 +115,7 @@ experience:
 
 service:
 - role: Reviewer
-  venues: NeurIPS, ICML, ICLR, AAAI, TCSVT, MTA
+  venues: NeurIPS, ICML, ICLR, IJCV, AAAI, TCSVT, MTA
   note: 300+ papers reviewed
 
 awards:
