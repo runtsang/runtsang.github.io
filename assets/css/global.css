@@ -108,7 +108,9 @@ mark {
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1480px;
+        /* 810px main + 20px gap + 516px side + 30px gutters: the side column is just
+           wide enough for its longest single-line items */
+        max-width: 1376px;
         width: 97%;
     }
 }
