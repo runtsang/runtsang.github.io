@@ -264,10 +264,11 @@ mark {
     font-weight: 600;
 }
 
-/* On wide screens the main column stops growing and the side column takes the rest */
-@media (min-width: 1380px) {
+/* From 1280px up the side column holds the width its longest single-line items
+   need (the Honors Program line and the Oracle link); the main column flexes. */
+@media (min-width: 1280px) {
     .home-grid {
-        grid-template-columns: 810px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 516px;
     }
 }
 
