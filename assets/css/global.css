@@ -108,8 +108,8 @@ mark {
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1320px;
-        width: 94%;
+        max-width: 1480px;
+        width: 97%;
     }
 }
 
@@ -260,6 +260,13 @@ mark {
 .section-nav a {
     padding: 4px 0;
     font-weight: 600;
+}
+
+/* On wide screens the main column stops growing and the side column takes the rest */
+@media (min-width: 1380px) {
+    .home-grid {
+        grid-template-columns: 810px minmax(0, 1fr);
+    }
 }
 
 /* ==========================================================================
