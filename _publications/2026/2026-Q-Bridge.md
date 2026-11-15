@@ -6,12 +6,13 @@ publication_groups: [lead]
 pub:            ""
 pub_last:       ' <span class="badge badge-pill badge-publication badge-secondary">arXiv</span>'
 pub_date:       "2026"
-interests:      ["LLMs", "LLMs Adaptation", "Agentic AI", "GenAI"]
+interests:      ["LLMs", "GenAI", "Agentic AI", "LLMs Adaptation"]
 note:           "Code Translation"
 
 abstract: >-
   Q-Bridge is an LLM-guided framework for translating classical machine learning code into executable quantum machine learning variants, addressing the lack of standardized datasets and robust translation pipelines in this space. It builds a large-scale CML-2-QML dataset through a self-involving expansion process and fine-tunes the Q-Bridge model with supervised LoRA for scalable, memory-efficient training. Experiments and case studies show faithful, interpretable quantum code generation, supporting both deterministic correctness and creative architectural exploration.
 cover:          assets/images/paper/qbridge.jpg
+institutions:   [rit, kent, rutgers]
 authors:
   - Runjia Zeng
   - Priyabrata Senapati

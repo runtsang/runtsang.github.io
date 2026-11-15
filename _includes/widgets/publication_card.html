@@ -1,67 +1,69 @@
 {% assign publications = include.publications %}
-{% assign highlight_pubs = publications | where_exp: "item", "item.publication_groups contains 'highlights'" %}
-{% assign lead_pubs = publications | where_exp: "item", "item.publication_groups contains 'lead'" %}
-{% assign other_pubs = publications | where_exp: "item", "item.publication_groups contains 'others'" %}
-{% assign ungrouped_pubs = publications | where_exp: "item", "item.publication_groups == nil" %}
-{% assign empty_group_pubs = publications | where_exp: "item", "item.publication_groups == empty" %}
-{% assign other_pubs = other_pubs | concat: ungrouped_pubs | concat: empty_group_pubs %}
-<div id="publications" class="my-3 p-0 bg-white shadow-sm rounded-sm publication-section section-anchor">
-    <div class="border-bottom border-gray p-3 mb-0">
-        <div class="publication-card-header">
-            <h6 class="mb-0">
-                {% if include.title %}{{ include.title }}{% else %}Publications{% endif %}
-            </h6>
-            <a href="{{ 'publications' | relative_url }}">(view all <i class="fas fa-angle-double-right"></i>)</a>
-        </div>
-        <div class="publication-filter-bar mt-3" role="tablist" aria-label="Publication categories">
-            <button type="button" class="publication-filter-btn active" data-group="all" aria-pressed="true">📑 ALL</button>
-            <button type="button" class="publication-filter-btn" data-group="highlights" aria-pressed="false">🌟 Highlights</button>
-            <button type="button" class="publication-filter-btn" data-group="lead" aria-pressed="false">🥇 Lead Contributions</button>
-            <button type="button" class="publication-filter-btn" data-group="others" aria-pressed="false">💾 Others</button>
+{% assign pub_years = publications | group_by_exp: "item", "item.date | date: '%Y'" %}
+<section id="publications" class="panel publication-section section-anchor">
+    <div class="publication-card-header">
+        <h2 class="panel-title mb-0">
+            {% if include.title %}{{ include.title }}{% else %}Publications{% endif %}
+        </h2>
+        <div class="pub-header-tools">
+            <span class="pub-count" aria-live="polite"></span>
+            <button type="button" class="pub-reset d-none">Clear filters</button>
         </div>
     </div>
 
-    <div class="publication-filter-panel" data-group="all">
-        {% if publications.size > 0 %}
+    <div class="pub-filters">
+        <div class="pub-filter-row">
+            <span class="pub-filter-label">Contribution</span>
+            <div class="publication-filter-bar" data-facet="group" role="group" aria-label="Filter by contribution">
+                <button type="button" class="publication-filter-btn active" data-value="all" aria-pressed="true">📑 ALL</button>
+                <button type="button" class="publication-filter-btn" data-value="highlights" aria-pressed="false">🌟 Highlights</button>
+                <button type="button" class="publication-filter-btn" data-value="lead" aria-pressed="false">🥇 Lead Contributions</button>
+                <button type="button" class="publication-filter-btn" data-value="others" aria-pressed="false">💾 Others</button>
+            </div>
+        </div>
+        <div class="pub-filter-row">
+            <span class="pub-filter-label">Time</span>
+            <div class="publication-filter-bar" data-facet="year" role="group" aria-label="Filter by year">
+                <button type="button" class="publication-filter-btn active" data-value="all" aria-pressed="true">All years</button>
+                {% for year in pub_years %}
+                <button type="button" class="publication-filter-btn" data-value="{{ year.name }}" aria-pressed="false">{{ year.name }}</button>
+                {% endfor %}
+                <button type="button" class="publication-filter-btn pub-sort-btn" data-sort="desc" aria-label="Sort order: newest first">
+                    <i class="fas fa-arrow-down-wide-short" aria-hidden="true"></i> <span>Newest first</span>
+                </button>
+            </div>
+        </div>
+        <div class="pub-filter-row">
+            <span class="pub-filter-label">Topic</span>
+            <div class="publication-filter-bar pub-label-bar" data-facet="topic" role="group" aria-label="Filter by topic"></div>
+        </div>
+        <div class="pub-filter-row">
+            <span class="pub-filter-label">Interest</span>
+            <div class="publication-filter-bar pub-label-bar" data-facet="interest" role="group" aria-label="Filter by research interest"></div>
+        </div>
+        <div class="pub-filter-row pub-inst-row d-none">
+            <span class="pub-filter-label">Collaborator</span>
+            <div class="publication-filter-bar">
+                <button type="button" class="publication-filter-btn active pub-inst-chip" aria-label="Remove collaborator filter">
+                    <span class="pub-inst-name"></span> <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pub-list">
         {% for item in publications limit:include.limit %}
-            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
+        {% assign groups = item.publication_groups | join: " " %}
+        {% if groups == "" %}{% assign groups = "others" %}{% endif %}
+        <div class="pub-entry" data-groups="{{ groups }}" data-year="{{ item.date | date: '%Y' }}"
+            data-date="{{ item.date | date: '%Y%m%d' }}" data-inst="{{ item.institutions | join: ' ' }}">
+            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=true %}
+        </div>
         {% endfor %}
-        {% else %}
-        <div class="publication-empty-state">No publications yet.</div>
-        {% endif %}
+        <div class="publication-empty-state d-none">No publications match these filters.</div>
     </div>
 
-    <div class="publication-filter-panel d-none" data-group="highlights">
-        {% if highlight_pubs.size > 0 %}
-        {% for item in highlight_pubs limit:include.limit %}
-            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
-        {% endfor %}
-        {% else %}
-        <div class="publication-empty-state">No highlight publications yet.</div>
-        {% endif %}
+    <div class="panel-footer">
+        <a href="{{ 'publications' | relative_url }}">All publications <i class="fas fa-angle-double-right" aria-hidden="true"></i></a>
     </div>
-
-    <div class="publication-filter-panel d-none" data-group="lead">
-        {% if lead_pubs.size > 0 %}
-        {% for item in lead_pubs limit:include.limit %}
-            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
-        {% endfor %}
-        {% else %}
-        <div class="publication-empty-state">No lead-contribution publications yet.</div>
-        {% endif %}
-    </div>
-
-    <div class="publication-filter-panel d-none" data-group="others">
-        {% if other_pubs.size > 0 %}
-        {% for item in other_pubs limit:include.limit %}
-            {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=forloop.last %}
-        {% endfor %}
-        {% else %}
-        <div class="publication-empty-state">More publications will appear here.</div>
-        {% endif %}
-    </div>
-
-    <h6 class="d-block p-3 mt-0 text-right">
-        <a href="{{ 'publications' | relative_url }}">All publications <i class="fas fa-angle-double-right"></i></a>
-    </h6>
-</div>
+</section>

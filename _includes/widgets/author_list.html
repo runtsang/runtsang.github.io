@@ -2,7 +2,11 @@
 {%- assign has_eq_contrib = false -%}
 {%- assign has_corresponding = false -%}
 
+{%- assign visible_authors = 3 -%}
+{%- assign hidden_start = visible_authors | plus: 1 -%}
+
 {%- for _key in authors -%}
+    {%- if forloop.index == hidden_start -%}<span class="authors-more" hidden>{%- endif -%}
     {%- assign last_char = _key | slice: -1, 1%}
     {%- if last_char == "*" -%}
         {%- assign key = _key | split: "*" | first -%}
@@ -43,6 +47,7 @@
     {%- endif -%}
 
 {%- endfor -%}
+{%- if authors.size > visible_authors -%}</span><a href="#" class="authors-toggle" role="button" aria-expanded="false" title="Show all {{ authors.size }} authors">et al.</a>{%- endif -%}
 
 {%- if has_eq_contrib or has_corresponding %}
 <mark>(

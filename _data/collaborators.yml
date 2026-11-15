@@ -1,0 +1,110 @@
+# Institutions of all co-authors, ordered by the first paper we wrote together.
+# logos[].dark: "invert" lightens a dark logo in the dark theme (hues are kept);
+#               omit it for logos that already read well on both themes.
+# logos[].dark_src: a separate image used in the dark theme.
+# key: referenced by `institutions:` in each _publications/*.md so that clicking
+#      a logo filters the publication list.
+- name: Rochester Institute of Technology
+  key: rit
+  url: https://www.rit.edu/
+  logos:
+    - src: /assets/images/institutions/rit.png
+- name: University of Missouri-Kansas City
+  key: umkc
+  url: https://www.umkc.edu/
+  logos:
+    - src: /assets/images/institutions/umkc.svg
+      dark: invert
+- name: Meta AI
+  key: meta
+  url: https://ai.meta.com/
+  logos:
+    - src: /assets/images/institutions/meta.svg
+- name: University of Rochester
+  key: rochester
+  url: https://www.rochester.edu/
+  logos:
+    - src: /assets/images/institutions/rochester.svg
+      dark: invert
+- name: UC Davis
+  key: ucdavis
+  url: https://www.ucdavis.edu/
+  logos:
+    - src: /assets/images/institutions/ucdavis.svg
+- name: University of California, Los Angeles
+  key: ucla
+  url: https://www.ucla.edu/
+  logos:
+    - src: /assets/images/institutions/ucla.svg
+      dark: invert
+- name: Rice University
+  key: rice
+  url: https://www.rice.edu/
+  logos:
+    - src: /assets/images/institutions/rice.png
+      dark: invert
+- name: Case Western Reserve University
+  key: cwru
+  url: https://case.edu/
+  logos:
+    - src: /assets/images/institutions/cwru.svg
+      dark: invert
+- name: U.S. DEVCOM Army Research Laboratory
+  key: arl
+  url: https://arl.devcom.army.mil/
+  logos:
+    - src: /assets/images/institutions/arl.png
+      dark_src: /assets/images/institutions/arl-dark.png
+- name: U.S. Naval Research Laboratory
+  key: nrl
+  url: https://www.nrl.navy.mil/
+  logos:
+    - src: /assets/images/institutions/nrl.svg
+      dark: invert
+- name: Adobe
+  key: adobe
+  url: https://www.adobe.com/
+  logos:
+    - src: /assets/images/institutions/adobe.svg
+- name: Meituan
+  key: meituan
+  url: https://www.meituan.com/
+  logos:
+    - src: /assets/images/institutions/meituan.png
+      dark_src: /assets/images/institutions/meituan-dark.png
+- name: Sun Yat-sen University
+  key: sysu
+  url: https://www.sysu.edu.cn/
+  logos:
+    - src: /assets/images/institutions/sysu.png
+      dark: invert
+- name: Purdue University
+  key: purdue
+  url: https://www.purdue.edu/
+  logos:
+    - src: /assets/images/institutions/purdue.svg
+      dark: invert
+- name: Kent State University
+  key: kent
+  url: https://www.kent.edu/
+  logos:
+    - src: /assets/images/institutions/kent.svg
+      dark: invert
+- name: Rutgers University
+  key: rutgers
+  url: https://www.rutgers.edu/
+  logos:
+    - src: /assets/images/institutions/rutgers.svg
+- name: Accenture
+  key: accenture
+  url: https://www.accenture.com/
+  logos:
+    - src: /assets/images/institutions/accenture.svg
+      dark: invert
+- name: MIT-IBM Watson AI Lab
+  key: mitibm
+  url: https://mitibmwatsonailab.mit.edu/
+  logos:
+    - src: /assets/images/institutions/mit.svg
+    - src: /assets/images/institutions/ibm.svg
+      dark: invert

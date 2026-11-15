@@ -9,12 +9,13 @@ pub:            "Conference on Neural Information Processing Systems"
 # pub_post:       'Under review.'
 pub_last:       ' <span class="badge badge-pill badge-publication badge-success">NeurIPS</span>'
 pub_date:       "2024"
-interests:      [LLMs Adaptation, "CV", "Prompt Tuning", "Fourier Transform"]
+interests:      ["LLMs Adaptation"]
 note:           "Fine Tuning"
 
 abstract: >-
   To tackle performance drops caused by data differences between pretraining and finetuning, we propose Visual Fourier Prompt Tuning (VFPT), which leverages the Fast Fourier Transform to combine spatial and frequency domain information, achieving better results with fewer parameters.
 cover:          assets/images/paper/vfpt.jpg
+institutions:   [rit, umkc, meta, rochester, ucdavis, ucla]
 authors:
   - Runjia Zeng
   - Cheng Han

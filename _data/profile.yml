@@ -31,7 +31,7 @@ short_bio: >-
   <p class="research-topic">
     My research focuses on efficient LLMs across their full lifecycle, spanning training, adaptation, reasoning, and agentic systems.
   </p>
-  <p>
+  <p class="research-interests">
     Research Interests: 
     <span class="interest-tag tag-monet-1">LLMs</span>
     <span class="interest-tag tag-monet-2">GenAI</span>
@@ -46,17 +46,11 @@ short_bio: >-
     <a href="/assets/files/resume_runjia.pdf" download="resume_runjia.pdf">My Resume: <i class="fas fa-file-pdf" aria-hidden="true"></i> resume_runjia.pdf</a>
   </p>
   <p>
-    University email: rz4545@<span style='color:#fb6a21;'>rit.edu</span> (Preferred) / run@<span style='color:#fb6a21;'>mail.rit.edu</span>
+    University email: rz4545@<span class="hl">rit.edu</span> (Preferred) / run@<span class="hl">mail.rit.edu</span>
   </p>
   <p>
-    Personal email: runjia@<span style='color:#1986d5;'>msn.com</span>
+    Personal email: runjia@<span class="hl">msn.com</span>
   </p>
-  <div class="status-banner">
-    <div style="font-size: 1rem;">🔥</div>
-    <div>
-      I am actively looking for full-time / new grad research opportunities in Reasoning, RL and Agentic AI after May 2027.
-    </div>
-  </div>
 
 portrait_url: /assets/images/photos/run.JPG
 portrait_caption: >-
@@ -64,10 +58,10 @@ portrait_caption: >-
 
 education:
 - name: Rochester Institute of Technology
-  logo: /assets/images/badges/RIT_orange.jpg
+  logo: /assets/images/institutions/rit.png
   position: Ph.D. Student in Electrical and Computer Engineering
   date: Aug. 2024 - May 2027 (Expected)
-- name: Guangdong University of Technology <span style='color:#0070f8;'>[Honors Program]</span>
+- name: Guangdong University of Technology <span class="hl">[Honors Program]</span>
   logo: /assets/images/badges/Guangdong_University_of_Technology_Logo.svg.png
   position: B. Eng in Computer Science and Technology
   date: Sep. 2020 - May. 2024
@@ -115,18 +109,27 @@ experience:
 
 service:
 - role: Reviewer
-  venues: NeurIPS, ICML, ICLR, IJCV, AAAI, TCSVT, MTA
+  venues: NeurIPS, ICML, ICLR, IJCV, CVPR, AAAI, TCSVT, MTA
   note: 300+ papers reviewed
 
 awards:
 - name: National Scholarship Award, PRC
   date: 2021
-- name: China Robot Competition & Robocup China Open National Champion
+- name: Robocup China Open National Champion
   date: 2022
 - name: ICML Gold Reviewer (Top 25%)
   date: 2026
 # - name: A quick brown fox jumps over the lazy dog and runs away award
 #   date: 2021
+
+# Shown as a highlighted block at the top of the News panel.
+news_pinned:
+  - icon: "🔥"
+    text: >-
+      I am actively looking for <strong>full-time / new grad research opportunities</strong> in Reasoning, RL and Agentic AI after May 2027.
+  - icon: "☕"
+    text: >-
+      I will be at <strong>NeurIPS 2026</strong> in Atlanta this December. Feel free to grab a coffee together!
 
 news:
   - con: NeurIPS
