@@ -42,9 +42,9 @@
             <p class="mt-0 mb-0 small">{% include widgets/author_list.html authors=item.authors %}</p>
             <p class="mt-0 mb-0 small">{{item.pub_pre}}<i>{{ item.pub_last }} {{ item.pub }}</i>{{ item.pub_post }} {{
                 item.pub_date }} </p>
-            <p class="mt-0 mb-0 small text-muted">{{ item.abstract }}</p>
 
             <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
+                {% if item.abstract %}<a href="#" class="abstract-toggle" role="button" aria-expanded="false">[Abstract]</a>{% endif %}
                 {% for link in item.links %}
                 {% if link[1].url %}
                 <a target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">[{{ link[0] }}]</a>
@@ -53,6 +53,7 @@
                 {% endif %}
                 {% endfor %}
             </p>
+            {% if item.abstract %}<p class="mt-1 mb-0 small text-muted pub-abstract" hidden>{{ item.abstract }}</p>{% endif %}
 
         </div>
     </div>
@@ -95,9 +96,9 @@
                 <p class="mt-0 mb-0 small">{% include widgets/author_list.html authors=item.authors %}</p>
                 <p class="mt-0 mb-0 small">{{item.pub_pre}}<i>{{ item.pub_last }} {{ item.pub }}</i>{{ item.pub_post }}
                     {{ item.pub_date }}</p>
-                <p class="mt-0 mb-0 small text-muted">{{ item.abstract }}</p>
 
                 <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
+                    {% if item.abstract %}<a href="#" class="abstract-toggle" role="button" aria-expanded="false">[Abstract]</a>{% endif %}
                     {% for link in item.links %}
                     {% if link[1].url %}
                     <a target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">[{{ link[0] }}]</a>
@@ -106,6 +107,7 @@
                     {% endif %}
                     {% endfor %}
                 </p>
+                {% if item.abstract %}<p class="mt-1 mb-0 small text-muted pub-abstract" hidden>{{ item.abstract }}</p>{% endif %}
             </div>
         </div>
     </div>

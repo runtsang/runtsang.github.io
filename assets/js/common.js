@@ -67,6 +67,14 @@ $(function () {
         $(this).text(expand ? 'show less' : 'et al.').attr('aria-expanded', String(expand));
     });
 
+    $(document).on('click', '.abstract-toggle', function (event) {
+        event.preventDefault();
+        var $abstract = $(this).closest('.abstract-links').next('.pub-abstract');
+        var expand = $abstract.prop('hidden');
+        $abstract.prop('hidden', !expand);
+        $(this).attr('aria-expanded', String(expand));
+    });
+
     initPublicationFilters();
 })
 

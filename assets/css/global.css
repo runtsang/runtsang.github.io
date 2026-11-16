@@ -847,6 +847,13 @@ mark {
     margin-right: 2px;
 }
 
+.abstract-toggle[aria-expanded="true"] { color: var(--text-2); }
+
+.pub-abstract {
+    border-left: 2px solid var(--border);
+    padding-left: 0.7em;
+}
+
 .badge-publication {
     font-size: 100%;
     font-family: var(--font-body);
