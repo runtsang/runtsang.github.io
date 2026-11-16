@@ -69,10 +69,9 @@ $(function () {
 
     $(document).on('click', '.abstract-toggle', function (event) {
         event.preventDefault();
-        var $abstract = $(this).closest('.abstract-links').next('.pub-abstract');
-        var expand = $abstract.prop('hidden');
-        $abstract.prop('hidden', !expand);
-        $(this).attr('aria-expanded', String(expand));
+        var expand = !$(this).parent().hasClass('is-open');
+        $(this).parent().toggleClass('is-open', expand);
+        $(this).html(expand ? '&larr; Collapse' : '&rarr; Expand').attr('aria-expanded', String(expand));
     });
 
     initPublicationFilters();

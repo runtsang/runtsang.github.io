@@ -847,11 +847,54 @@ mark {
     margin-right: 2px;
 }
 
-.abstract-toggle[aria-expanded="true"] { color: var(--text-2); }
+/* Watermark-style publication date under the cover image. */
+.pub-date-mark {
+    margin-top: 0.35rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.9rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: var(--text-2);
+    opacity: 0.3;
+    -webkit-mask-image: linear-gradient(to bottom, #000 15%, transparent 95%);
+    mask-image: linear-gradient(to bottom, #000 15%, transparent 95%);
+    user-select: none;
+}
+
+/* Abstract: two lines, with the toggle sitting at the end of the second line. */
+.pub-abstract-wrap { display: flex; }
 
 .pub-abstract {
-    border-left: 2px solid var(--border);
-    padding-left: 0.7em;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.pub-abstract::before {
+    content: "";
+    float: right;
+    height: calc(100% - 1.5em);
+}
+
+.pub-abstract.is-open {
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+}
+
+.pub-abstract.is-open::before { display: none; }
+
+.abstract-toggle {
+    float: right;
+    clear: both;
+    margin-left: 0.6em;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 .badge-publication {

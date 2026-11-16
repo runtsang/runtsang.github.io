@@ -9,6 +9,7 @@
             <svg class="bubble-visual-hash lazy w-100 rounded-sm" data-bubble-visual-hash="{{ item.id }}"
                 viewBox="0 0 300 200"></svg>
             {%- endif -%}
+            <div class="pub-date-mark" aria-hidden="true">&rsquo;{{ item.date | date: "%y %b" }}</div>
         </div>
         <div class="col-md-9 py-3">
             <h3 class="pub-title">
@@ -44,7 +45,6 @@
                 item.pub_date }} </p>
 
             <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                {% if item.abstract %}<a href="#" class="abstract-toggle" role="button" aria-expanded="false">[Abstract]</a>{% endif %}
                 {% for link in item.links %}
                 {% if link[1].url %}
                 <a target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">[{{ link[0] }}]</a>
@@ -53,7 +53,7 @@
                 {% endif %}
                 {% endfor %}
             </p>
-            {% if item.abstract %}<p class="mt-1 mb-0 small text-muted pub-abstract" hidden>{{ item.abstract }}</p>{% endif %}
+            {% if item.abstract %}<div class="pub-abstract-wrap"><p class="mt-1 mb-0 small text-muted pub-abstract"><a href="#" class="abstract-toggle" role="button" aria-expanded="false">&rarr; Expand</a>{{ item.abstract }}</p></div>{% endif %}
 
         </div>
     </div>
@@ -98,7 +98,6 @@
                     {{ item.pub_date }}</p>
 
                 <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                    {% if item.abstract %}<a href="#" class="abstract-toggle" role="button" aria-expanded="false">[Abstract]</a>{% endif %}
                     {% for link in item.links %}
                     {% if link[1].url %}
                     <a target="{{ link[1]['target'] }}" href="{{ link[1]['url'] }}">[{{ link[0] }}]</a>
@@ -107,7 +106,7 @@
                     {% endif %}
                     {% endfor %}
                 </p>
-                {% if item.abstract %}<p class="mt-1 mb-0 small text-muted pub-abstract" hidden>{{ item.abstract }}</p>{% endif %}
+                {% if item.abstract %}<div class="pub-abstract-wrap"><p class="mt-1 mb-0 small text-muted pub-abstract"><a href="#" class="abstract-toggle" role="button" aria-expanded="false">&rarr; Expand</a>{{ item.abstract }}</p></div>{% endif %}
             </div>
         </div>
     </div>
