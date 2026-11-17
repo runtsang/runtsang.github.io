@@ -108,3 +108,12 @@
     - src: /assets/images/institutions/mit.svg
     - src: /assets/images/institutions/ibm.svg
       dark: invert
+# No `logos:` entry shows the name as text instead.
+- name: Gyges Labs
+  key: gyges
+  url: https://gygeslabs.com/
+- name: University of North Texas
+  key: unt
+  url: https://www.unt.edu/
+  logos:
+    - src: /assets/images/institutions/unt.svg
