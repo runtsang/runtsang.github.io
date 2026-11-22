@@ -5,6 +5,9 @@ homepage:
   show_selected_publications: true
   num_news: 1  # shown in full; the next one fades out behind "Show more"
 
+publications:
+  show_cover_date: false  # the "'25 Sep" watermark under each cover; the venue badge shows the year
+
 # Feel free to replace the footer text if you would like to, but I will greatly appreciate it 
 # if you keep the link to the template so that more people can benefit from it. Thanks!
 footer_text: >-

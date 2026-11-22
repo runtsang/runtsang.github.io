@@ -1,4 +1,14 @@
 {% assign item = include.item %}
+{%- comment -%}
+The venue badge carries the year, e.g. "NeurIPS ’25": the last two digits of
+`pub_date` are written into the badge that `pub_last` holds.
+{%- endcomment -%}
+{%- assign venue_badge = item.pub_last -%}
+{%- assign pub_year = item.pub_date | append: "" -%}
+{%- if pub_year.size == 4 -%}
+{%- capture badge_year %} &rsquo;{{ pub_year | slice: 2, 2 }}</span>{% endcapture -%}
+{%- assign venue_badge = item.pub_last | replace: "</span>", badge_year -%}
+{%- endif %}
 <div class="d-none d-md-block">
     <div class="row no-gutters pub-item {% unless include.hide_bottom_border %}border-bottom{% endunless %}">
         <div class="col-md-3 mb-md-0 py-md-3 pr-md-3 pub-cover-col">
@@ -9,7 +19,9 @@
             <svg class="bubble-visual-hash lazy w-100 rounded-sm" data-bubble-visual-hash="{{ item.id }}"
                 viewBox="0 0 300 200"></svg>
             {%- endif -%}
+            {%- if site.data.display.publications.show_cover_date %}
             <div class="pub-date-mark" aria-hidden="true">&rsquo;{{ item.date | date: "%y %b" }}</div>
+            {%- endif %}
             {%- if item.industry_recognition and item.industry_recognition.size > 0 %}
             <div class="pub-industry" tabindex="-1">
                 <p class="pub-industry-text"><a href="#" class="pub-industry-toggle pub-industry-more" role="button" aria-expanded="false">&rarr; Expand</a><span class="pub-industry-label">Industry Recognition:</span>
@@ -51,8 +63,7 @@
             {% endif %}
 
             <p class="mt-0 mb-0 small">{% include widgets/author_list.html authors=item.authors %}</p>
-            <p class="mt-0 mb-0 small">{{item.pub_pre}}<i>{{ item.pub_last }} {{ item.pub }}</i>{{ item.pub_post }} {{
-                item.pub_date }} </p>
+            <p class="mt-0 mb-0 small">{{item.pub_pre}}<i>{{ venue_badge }} {{ item.pub }}</i>{{ item.pub_post }}</p>
 
             <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                 {% for link in item.links %}
@@ -104,8 +115,7 @@
                 {% endif %}
 
                 <p class="mt-0 mb-0 small">{% include widgets/author_list.html authors=item.authors %}</p>
-                <p class="mt-0 mb-0 small">{{item.pub_pre}}<i>{{ item.pub_last }} {{ item.pub }}</i>{{ item.pub_post }}
-                    {{ item.pub_date }}</p>
+                <p class="mt-0 mb-0 small">{{item.pub_pre}}<i>{{ venue_badge }} {{ item.pub }}</i>{{ item.pub_post }}</p>
 
                 <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                     {% for link in item.links %}

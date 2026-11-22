@@ -966,14 +966,17 @@ mark {
 
 .pub-cover-col > * { flex: none; }
 
-/* The negative margins borrow the faded foot of the date mark and part of the
-   column's bottom padding, which is what lets a second line fit in a tight card. */
+/* The negative bottom margin borrows part of the column's bottom padding, which
+   is what lets one more line fit in a tight card. */
 .pub-cover-col > .pub-industry {
     flex: 1 1 0px;
     min-height: calc((var(--industry-label-lines, 1) + 1) * var(--industry-lh) * 1em);
-    margin: -0.3rem 0 -0.5rem;
+    margin: 0.4rem 0 -0.5rem;
     overflow: hidden;
 }
+
+/* After the date mark (when display.yml turns it on) the block tucks under its faded foot. */
+.pub-cover-col > .pub-date-mark + .pub-industry { margin-top: -0.3rem; }
 
 .pub-cover-col > .pub-industry.is-open {
     flex: none;
