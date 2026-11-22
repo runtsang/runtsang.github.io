@@ -40,8 +40,20 @@ short_bio: >-
   </p>
 
 # Research panel on the homepage: a one-sentence statement plus the current directions.
+# The sentence continues on a second line with `research_areas_lead` and the areas;
+# hovering an area lists the papers tagged with its `interest` (title, then venue).
 research_statement: >-
-  My research focuses on efficient LLMs across their full lifecycle, spanning training, adaptation, reasoning, and agentic systems.
+  My research focuses on efficient LLMs across their full lifecycle,
+research_areas_lead: spanning
+research_areas:
+  - name: training
+    interest: LLMs Training
+  - name: adaptation
+    interest: LLMs Adaptation
+  - name: reasoning
+    interest: Reasoning
+  - name: agentic systems
+    interest: Agentic AI
 research_focus:
   - '<abbr title="Recursive Self-Improvement">RSI</abbr> Agents'
   - '<abbr title="Recursive Self-Improvement">RSI</abbr> Robotics'

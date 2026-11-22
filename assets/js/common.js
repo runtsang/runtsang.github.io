@@ -89,7 +89,69 @@ $(function () {
     initNewsPeek();
     initPublicationFilters();
     initIndustryFit();
+    initResearchAreas();
 })
+
+// Research areas: each underlined term in the statement lists its papers. CSS
+// shows the list under the statement on hover and on keyboard focus; here it is
+// moved under its term, as far as the statement's width allows, and a tap
+// toggles it on screens that cannot hover.
+function initResearchAreas() {
+    var areas = Array.prototype.slice.call(document.querySelectorAll('.research-area'));
+    if (!areas.length) { return; }
+
+    function place(area) {
+        var pop = area.querySelector('.research-area-pop');
+        var statement = area.parentNode;
+        pop.classList.add('is-measuring');
+        var room = statement.clientWidth - pop.offsetWidth;
+        var left = area.getBoundingClientRect().left - statement.getBoundingClientRect().left;
+        pop.style.setProperty('--pop-left', Math.max(0, Math.min(left, room)) + 'px');
+        pop.classList.remove('is-measuring');
+    }
+
+    function closeAll() {
+        areas.forEach(function (area) { area.classList.remove('is-open'); });
+    }
+
+    areas.forEach(function (area) {
+        area.addEventListener('mouseenter', function () { place(area); });
+        area.addEventListener('mouseleave', function () { area.classList.remove('is-dismissed'); });
+        area.addEventListener('focus', function () { place(area); });
+        area.addEventListener('click', function () {
+            if (window.matchMedia('(hover: hover)').matches) { return; }
+            var open = !area.classList.contains('is-open');
+            closeAll();
+            if (open) {
+                place(area);
+                area.classList.add('is-open');
+            }
+        });
+    });
+
+    // A list left open while the statement changes width (a resize, a rotation)
+    // would keep its old offset.
+    function placeAll() { areas.forEach(place); }
+    if (window.ResizeObserver) {
+        new ResizeObserver(placeAll).observe(areas[0].parentNode);
+    } else {
+        window.addEventListener('resize', placeAll);
+    }
+
+    document.addEventListener('pointerdown', function (event) {
+        if (!event.target.closest || !event.target.closest('.research-area')) { closeAll(); }
+    });
+    document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') { return; }
+        closeAll();
+        // A list shown by hover stays away until the pointer leaves its term.
+        areas.forEach(function (area) {
+            if (area.matches(':hover')) { area.classList.add('is-dismissed'); }
+        });
+        var active = document.activeElement;
+        if (active && active.classList.contains('research-area')) { active.blur(); }
+    });
+}
 
 // Industry recognition: CSS confines the list to the room left under the cover
 // date. Here the list is cut at a whole number of lines and gets its Expand

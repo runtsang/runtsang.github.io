@@ -2,6 +2,7 @@
 # logos[].dark: "invert" lightens a dark logo in the dark theme (hues are kept);
 #               omit it for logos that already read well on both themes.
 # logos[].dark_src: a separate image used in the dark theme.
+# logos[].height: height in px, for a logo the default 26px leaves too small.
 # key: referenced by `institutions:` in each _publications/*.md so that clicking
 #      a logo filters the publication list.
 # type: `research` (universities and government labs) or `industry`; picks the
@@ -91,8 +92,11 @@
   type: research
   url: https://www.sysu.edu.cn/
   logos:
+    # The full lockup (emblem, Chinese name, English name), a little taller than
+    # the default so the name stays readable.
     - src: /assets/images/institutions/sysu.png
-      dark: invert
+      dark_src: /assets/images/institutions/sysu-dark.png
+      height: 32
 - name: Purdue University
   key: purdue
   type: research

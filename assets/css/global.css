@@ -345,7 +345,88 @@ mark {
 }
 
 /* --- Research panel: statement, then the current directions --- */
-.research-panel .research-topic { margin-bottom: 0.85rem; }
+.research-panel .research-topic {
+    position: relative;   /* the paper lists hang from the statement's foot */
+    margin-bottom: 0.85rem;
+}
+
+/* The paper lists hang below the panel's edge, over the panel that follows */
+.research-panel {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Research areas in the statement: dotted underline like the abbreviations
+   below, and on hover or focus the papers in that area (title, then venue) --- */
+.research-area {
+    white-space: nowrap;
+    cursor: help;
+    text-decoration: underline dotted;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 0.18em;
+}
+
+.research-area:focus { outline: 0; }
+
+.research-area:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+/* The list sits right under the statement, never wider than it; the script
+   moves it under its term (--pop-left). Same type as the industry names on the
+   publication cards. */
+.research-area-pop {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: var(--pop-left, 0px);
+    z-index: 5;
+    width: max-content;
+    max-width: min(36rem, 100%);
+    margin-top: 0.4rem;
+    padding: 0.6rem 0.8rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(20, 20, 19, 0.1);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text);
+    white-space: normal;
+    pointer-events: none;
+}
+
+:root[data-theme="dark"] .research-area-pop { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); }
+
+@media (hover: hover) {
+    .research-area:hover { text-decoration-style: solid; }
+    .research-area:hover > .research-area-pop { display: block; }
+}
+
+.research-area.is-open { text-decoration-style: solid; }
+
+.research-area:focus-visible > .research-area-pop,
+.research-area.is-open > .research-area-pop,
+.research-area-pop.is-measuring { display: block; }
+
+/* Escape puts a hovered list away until the pointer leaves the term */
+.research-area.is-dismissed:hover > .research-area-pop:not(.is-measuring) { display: none; }
+
+/* One paper per row: the title, then its venue badge in a column on the right */
+.research-area-paper {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.9rem;
+}
+
+.research-area-paper + .research-area-paper { margin-top: 0.35rem; }
+.research-area-title { text-wrap: balance; }
+.research-area-paper .badge { flex: none; }
 
 .research-focus {
     display: flex;
@@ -1135,6 +1216,13 @@ div.lazy {
     }
 
     .home-side .panel { animation-delay: 0.08s; }
+
+    .research-area-pop { animation: research-pop-in 0.16s ease-out; }
+
+    @keyframes research-pop-in {
+        from { opacity: 0; transform: translateY(-3px); }
+        to { opacity: 1; transform: none; }
+    }
 
     .news-body.is-ready { transition: max-height 0.35s ease; }
 

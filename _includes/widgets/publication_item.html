@@ -1,14 +1,5 @@
 {% assign item = include.item %}
-{%- comment -%}
-The venue badge carries the year, e.g. "NeurIPS ’25": the last two digits of
-`pub_date` are written into the badge that `pub_last` holds.
-{%- endcomment -%}
-{%- assign venue_badge = item.pub_last -%}
-{%- assign pub_year = item.pub_date | append: "" -%}
-{%- if pub_year.size == 4 -%}
-{%- capture badge_year %} &rsquo;{{ pub_year | slice: 2, 2 }}</span>{% endcapture -%}
-{%- assign venue_badge = item.pub_last | replace: "</span>", badge_year -%}
-{%- endif %}
+{%- capture venue_badge %}{% include widgets/venue_badge.html item=item %}{% endcapture %}
 <div class="d-none d-md-block">
     <div class="row no-gutters pub-item {% unless include.hide_bottom_border %}border-bottom{% endunless %}">
         <div class="col-md-3 mb-md-0 py-md-3 pr-md-3 pub-cover-col">

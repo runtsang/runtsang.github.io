@@ -1,8 +1,32 @@
 {% if site.data.profile.research_statement or site.data.profile.research_focus %}
+{%- assign areas = site.data.profile.research_areas -%}
+{%- assign papers = site.publications | sort: "date" | reverse %}
 <section id="research" class="panel research-panel section-anchor">
     <h2 class="panel-title">Research</h2>
     {% if site.data.profile.research_statement %}
-    <p class="research-topic">{{ site.data.profile.research_statement }}</p>
+    {%- comment -%}
+    The statement, then on a second line the research areas. An area with papers
+    gets a dotted underline and a list of them (title, then venue) on hover.
+    {%- endcomment %}
+    <p class="research-topic">{{ site.data.profile.research_statement }}
+        {%- if areas and areas.size > 0 -%}
+        <br>{{ site.data.profile.research_areas_lead }}
+        {%- for area in areas -%}
+        {%- assign area_papers = papers | where_exp: "paper", "paper.interests contains area.interest" -%}
+        {%- if forloop.last and forloop.length > 1 %} and{% endif %}
+        {% if area_papers.size > 0 -%}
+        <span class="research-area" tabindex="0" aria-describedby="research-area-{{ forloop.index }}">{{ area.name }}<span class="research-area-pop" id="research-area-{{ forloop.index }}" role="tooltip">
+            {%- for paper in area_papers -%}
+            <span class="research-area-paper"><span class="research-area-title">{{ paper.title }}</span> {% include widgets/venue_badge.html item=paper %}</span>
+            {%- endfor -%}
+        </span></span>
+        {%- else -%}
+        {{ area.name }}
+        {%- endif -%}
+        {%- if forloop.last %}.{% elsif forloop.length > 2 %},{% endif -%}
+        {%- endfor -%}
+        {%- endif -%}
+    </p>
     {% endif %}
     {% if site.data.profile.research_focus %}
     <div class="research-focus">

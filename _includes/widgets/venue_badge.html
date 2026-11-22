@@ -1,0 +1,12 @@
+{%- comment -%}
+The venue badge of a paper with its year, e.g. "NeurIPS ’25": the last two
+digits of `pub_date` are written into the badge that `pub_last` holds.
+  item: a publication
+{%- endcomment -%}
+{%- assign venue_badge = include.item.pub_last -%}
+{%- assign pub_year = include.item.pub_date | append: "" -%}
+{%- if pub_year.size == 4 -%}
+{%- capture badge_year %} &rsquo;{{ pub_year | slice: 2, 2 }}</span>{% endcapture -%}
+{%- assign venue_badge = include.item.pub_last | replace: "</span>", badge_year -%}
+{%- endif -%}
+{{- venue_badge -}}
