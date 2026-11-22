@@ -32,26 +32,40 @@
     {% if site.data.collaborators %}
     <div class="exp-section">
         <h2 class="panel-title">Collaborators</h2>
-        <ul class="collab-list">
-            {% for item in site.data.collaborators %}
-            <li>
-                <button type="button" class="collab-btn" data-inst="{{ item.key }}" data-name="{{ item.name }}"
-                    title="{{ item.name }}: show our papers" aria-label="Show papers with {{ item.name }}" aria-pressed="false">
-                    {% if item.logos %}
-                    {% for logo in item.logos %}
-                    <img src="{{ logo.src | relative_url }}" alt="" loading="lazy"
-                        class="collab-logo{% if logo.dark == 'invert' %} is-dark-invert{% endif %}{% if logo.dark_src %} is-light-only{% endif %}">
-                    {% if logo.dark_src %}
-                    <img src="{{ logo.dark_src | relative_url }}" alt="" loading="lazy" class="collab-logo is-dark-only">
-                    {% endif %}
-                    {% endfor %}
-                    {% else %}
-                    <span class="collab-text">{{ item.name }}</span>
-                    {% endif %}
-                </button>
-            </li>
-            {% endfor %}
-        </ul>
+        {% comment %} One list per `type` in _data/collaborators.yml, in this order. {% endcomment %}
+        {% assign collab_groups = "research:Research Institutions,industry:Industry" | split: "," %}
+        {% for group in collab_groups %}
+        {% assign group_key = group | split: ":" | first %}
+        {% assign group_name = group | split: ":" | last %}
+        <div class="collab-group">
+            <h3 class="collab-group-label" id="collab-{{ group_key }}">{{ group_name }}</h3>
+            <ul class="collab-list" aria-labelledby="collab-{{ group_key }}">
+                {% for item in site.data.collaborators %}
+                {% comment %} Anything that is not "industry" (missing or mistyped) counts as research. {% endcomment %}
+                {% assign item_type = item.type | downcase %}
+                {% unless item_type == "industry" %}{% assign item_type = "research" %}{% endunless %}
+                {% if item_type == group_key %}
+                <li>
+                    <button type="button" class="collab-btn" data-inst="{{ item.key }}" data-name="{{ item.name }}"
+                        title="{{ item.name }}: show our papers" aria-label="Show papers with {{ item.name }}" aria-pressed="false">
+                        {% if item.logos %}
+                        {% for logo in item.logos %}
+                        <img src="{{ logo.src | relative_url }}" alt="" loading="lazy"
+                            class="collab-logo{% if logo.dark == 'invert' %} is-dark-invert{% endif %}{% if logo.dark_src %} is-light-only{% endif %}">
+                        {% if logo.dark_src %}
+                        <img src="{{ logo.dark_src | relative_url }}" alt="" loading="lazy" class="collab-logo is-dark-only">
+                        {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        <span class="collab-text">{{ item.name }}</span>
+                        {% endif %}
+                    </button>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
     </div>
     {% endif %}
 </section>

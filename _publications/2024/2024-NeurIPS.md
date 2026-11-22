@@ -25,6 +25,31 @@ authors:
   - Lifu Huang
   - Ying Nian Wu
   - Dongfang Liu
+# Companies with an author on a paper that cites this work, best known first.
+# Papers that share an author with this one are left out.
+industry_recognition:
+  - name: Microsoft
+    cited_in: "Do Soft Prompts Have Useful Wavelet Structure? Negative Evidence In A Controlled Setup (Insights from Negative Results in NLP Workshop 2026)"
+  - name: Amazon
+    cited_in: "State Space Prompting via Gathering and Spreading Spatio-Temporal Information for Video Understanding (NeurIPS 2025); Token Coordinated Prompt Attention is Needed for Visual Prompting (ICML 2025)"
+  - name: NVIDIA
+    cited_in: "Decompose, Mix, Adapt: A Unified Framework for Parameter-Efficient Neural Network Recombination and Compression (CVPR 2026)"
+  - name: Alibaba
+    cited_in: "Representation Editing for Multimodal Test-Time Adaptation (arXiv 2026)"
+  - name: Qualcomm
+    cited_in: "Revisit Visual Prompt Tuning: The Expressiveness of Prompt Experts (ICLR 2026)"
+  - name: Baidu
+    cited_in: "Tiny Budgets, Big Gains: Parameter Placement Strategy in Parameter Super-Efficient Fine-Tuning (EMNLP 2025)"
+  - name: LG
+    cited_in: "A Debiased Reconstruction-based Framework for Training-Free Detection of AI-Generated Images (CVPR 2026)"
+  - name: NTT
+    cited_in: "Enhancing Visual Prompting through Expanded Transformation Space and Overfitting Mitigation (NeurIPS 2025)"
+  - name: Capital One
+    cited_in: "Rethinking Layer-Wise Information Allocation for Vision Foundation Model Adaptation (ACM MM 2026)"
+  - name: Trivita AI
+    cited_in: "Revisit Visual Prompt Tuning: The Expressiveness of Prompt Experts (ICLR 2026)"
+  - name: Sympflux
+    cited_in: "Test-Time Prompt-Agnostic Decomposition (NeurIPS 2026)"
 links:
   Homepage💻: https://runjia.tech/vfpt_page/
   Code💾: https://github.com/runtsang/VFPT

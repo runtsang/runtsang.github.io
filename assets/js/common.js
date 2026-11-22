@@ -74,8 +74,116 @@ $(function () {
         $(this).html(expand ? '&larr; Collapse' : '&rarr; Expand').attr('aria-expanded', String(expand));
     });
 
+    $(document).on('click', '.pub-industry-toggle', function (event) {
+        event.preventDefault();
+        var block = $(this).closest('.pub-industry')[0];
+        var open = !block.classList.contains('is-open');
+        block.classList.toggle('is-open', open);
+        if (!open) { fitIndustry(block); }
+        // The clicked toggle is now hidden; keep keyboard focus on its counterpart,
+        // or on the block when the list fits again and no toggle is left.
+        var next = block.querySelector(open ? '.pub-industry-less' : '.pub-industry-more');
+        (next && next.offsetParent ? next : block).focus({ preventScroll: true });
+    });
+
+    initNewsPeek();
     initPublicationFilters();
+    initIndustryFit();
 })
+
+// Industry recognition: CSS confines the list to the room left under the cover
+// date. Here the list is cut at a whole number of lines and gets its Expand
+// toggle, but only when it does not fit.
+function fitIndustry(block) {
+    if (block.classList.contains('is-open') || !block.offsetParent) { return; }
+    var text = block.querySelector('.pub-industry-text');
+    block.classList.remove('is-clamped');
+    var line = parseFloat(getComputedStyle(text).lineHeight);
+    if (!line) { return; }
+    // The label has a line to itself (two in a narrow column); the block is
+    // never shorter than the label plus one line of companies.
+    var label = block.querySelector('.pub-industry-label');
+    var labelLines = Math.max(1, Math.round(label.getBoundingClientRect().height / line));
+    block.style.setProperty('--industry-label-lines', labelLines);
+    var lines = Math.max(labelLines + 1, Math.floor((block.clientHeight + 1) / line));
+    if (text.getBoundingClientRect().height > lines * line + 1) {
+        block.style.setProperty('--industry-lines', lines);
+        block.classList.add('is-clamped');
+    }
+}
+
+function initIndustryFit() {
+    var blocks = Array.prototype.slice.call(document.querySelectorAll('.pub-industry'));
+    if (!blocks.length) { return; }
+
+    function fitAll() { blocks.forEach(fitIndustry); }
+
+    fitAll();
+    // The room changes whenever a card re-wraps, a cover finishes loading or a
+    // filter shows the card again; each of those resizes the block.
+    if (window.ResizeObserver) {
+        var observer = new ResizeObserver(function (entries) {
+            entries.forEach(function (entry) { fitIndustry(entry.target); });
+        });
+        blocks.forEach(function (block) { observer.observe(block); });
+    } else {
+        window.addEventListener('resize', fitAll);
+    }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fitAll); }
+}
+
+// News: the newest item(s) show in full, the next one fades out as a teaser, and
+// the button opens the whole list. The heights are measured here because items
+// wrap differently at every width; the fade itself is CSS.
+function initNewsPeek() {
+    var body = document.getElementById('news-body');
+    var btn = document.getElementById('more-news-btn');
+    if (!body || !btn) { return; }
+
+    var list = body.querySelector('.news-list');
+    var items = Array.prototype.slice.call(body.querySelectorAll('.news-item'));
+    var visible = Number(body.getAttribute('data-visible')) || 1;
+    var teaser = items[visible];
+    if (!teaser) { return; }
+
+    // A new measurement (first load, re-wrap on resize, late web fonts) applies at
+    // once: transitions are off while it settles, so only the button animates.
+    function measure() {
+        var cut = teaser.getBoundingClientRect().top - list.getBoundingClientRect().top;
+        body.classList.remove('is-ready');
+        body.style.setProperty('--news-cut', Math.round(cut) + 'px');
+        body.style.setProperty('--news-full', Math.ceil(list.getBoundingClientRect().height) + 'px');
+        void body.offsetHeight;
+        body.classList.add('is-ready');
+    }
+
+    function setOpen(open) {
+        body.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        btn.querySelector('span').textContent = open ? 'Show less' : 'Show more';
+        btn.querySelector('i').className = open ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+    }
+
+    measure();
+    if (window.ResizeObserver) {
+        new ResizeObserver(measure).observe(list);
+    } else {
+        window.addEventListener('resize', measure);
+    }
+
+    btn.addEventListener('click', function () {
+        setOpen(!body.classList.contains('is-open'));
+    });
+
+    // Tabbing to a link in the clipped part opens the list, so focus is never hidden.
+    body.addEventListener('focusin', function (event) {
+        var item = event.target.closest('.news-item');
+        if (item && items.indexOf(item) >= visible) {
+            body.scrollTop = 0;
+            setOpen(true);
+        }
+    });
+}
 
 // Publication filters: contribution, year, label, collaborator, plus sort order.
 function initPublicationFilters() {
@@ -115,14 +223,13 @@ function initPublicationFilters() {
         addChip('topic', text, labelInfo.topic[text].cls);
     });
 
-    // Interests follow the order (and colours) of the Research Interests in the bio.
-    var $bioTags = $('.research-interests .interest-tag');
+    // Interests follow research_interests in _data/profile.yml, which the
+    // filter bar carries as data-order; any others come after, alphabetically.
     var placed = {};
-    $bioTags.each(function () {
-        var text = $.trim($(this).text());
+    String($section.find('[data-facet="interest"]').attr('data-order') || '').split('|').forEach(function (text) {
         if (!labelInfo.interest[text]) { return; }
         placed[text] = true;
-        addChip('interest', text, this.className);
+        addChip('interest', text, labelInfo.interest[text].cls);
     });
     Object.keys(labelInfo.interest).sort().forEach(function (text) {
         if (!placed[text]) { addChip('interest', text, labelInfo.interest[text].cls); }
@@ -191,19 +298,6 @@ function initPublicationFilters() {
 
     $section.find('.pub-label-bar').on('click', '.pub-label-chip', function () {
         toggleLabel($(this).closest('[data-facet]').data('facet'), String($(this).data('value')));
-    });
-
-    // The Research Interests in the bio act as shortcuts to the same filter.
-    $bioTags.each(function () {
-        var text = $.trim($(this).text());
-        if (!labelInfo.interest[text]) { return; }
-        $(this).addClass('is-clickable').attr({ role: 'button', tabindex: 0, title: 'Show papers on ' + text })
-            .on('click keydown', function (event) {
-                if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') { return; }
-                event.preventDefault();
-                toggleLabel('interest', text);
-                $section[0].scrollIntoView({ block: 'start' });
-            });
     });
 
     $section.find('.pub-sort-btn').on('click', function () {

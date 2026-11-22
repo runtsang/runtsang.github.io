@@ -27,6 +27,13 @@ authors:
   - Tong Geng
   - Qifan Wang
   - Dongfang Liu
+# Companies with an author on a paper that cites this work, best known first.
+# Papers that share an author with this one are left out.
+industry_recognition:
+  - name: Tencent
+    cited_in: "Don't Throw Away Your Pretrained Model (ICLR 2026)"
+  - name: Alibaba
+    cited_in: "Orchestrating Hidden-Intermediate Pruning-and-Distill for MoEs Slimming (Findings of EMNLP 2026)"
 links:
   Homepage💻: https://runjia.tech/neurips_pta-llm/
   Code💾: https://github.com/runtsang/PTA-LLM

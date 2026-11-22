@@ -222,6 +222,7 @@ mark {
 /* Small screens keep the original reading order across both columns */
 .home-main, .home-side { display: contents; }
 .profile-panel { order: 1; }
+.research-panel { order: 1; }
 .section-nav { order: 2; }
 .news-panel { order: 3; }
 .experience-panel { order: 4; }
@@ -292,8 +293,13 @@ mark {
     margin-bottom: 0.5rem;
 }
 
+/* Dashed rule above the resume link. It is its own formatting context, so next
+   to the floated portrait it stops at the photo's margin instead of running
+   underneath it. */
 .text-profile-bio hr {
     margin: 0.75rem 0;
+    border-top: 1px dashed var(--accent-line);
+    overflow: hidden;
 }
 
 .portrait {
@@ -338,8 +344,64 @@ mark {
     font-weight: 500;
 }
 
-/* Sits below the floated portrait so the tags get the full card width */
-.research-interests { clear: both; }
+/* --- Research panel: statement, then the current directions --- */
+.research-panel .research-topic { margin-bottom: 0.85rem; }
+
+.research-focus {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-top: 0.8rem;
+    border-top: 1px dashed var(--accent-line);
+}
+
+/* Same label column as the publication filters in the panel below */
+.research-focus-label {
+    flex: none;
+    width: 6.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.research-focus-list {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    /* Two columns only where the longest direction still fits on one line */
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+    gap: 0.4rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: focus;
+}
+
+.research-focus-list li {
+    counter-increment: focus;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.research-focus-list li::before {
+    content: counter(focus, decimal-leading-zero);
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent-text);
+}
+
+@media (max-width: 575.98px) {
+    .research-focus { flex-direction: column; gap: 6px; }
+    .research-focus-label { width: auto; }
+    .research-focus-list { width: 100%; }
+}
 
 /* --- Research interest tags --- */
 .interest-tag {
@@ -408,9 +470,27 @@ mark {
     border-top: 1px solid var(--border);
 }
 
-.news-body > .news-year:first-child {
+.news-list > .news-year:first-child {
     border-top: 0;
     padding-top: 0;
+}
+
+/* Collapsed news: everything above --news-cut (the top of the teaser item, which
+   common.js measures) shows in full, then --news-peek of the teaser fades out. */
+.news-body.is-clipped {
+    --news-peek: 2.1rem;
+    overflow: hidden;
+    overflow: clip;
+    max-height: calc(var(--news-cut, 3.2rem) + var(--news-peek));
+}
+
+.news-body.is-clipped:not(.is-open) {
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--news-peek)), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - var(--news-peek)), transparent);
+}
+
+.news-body.is-clipped.is-open {
+    max-height: var(--news-full, none);
 }
 
 .news-year-label {
@@ -620,7 +700,21 @@ mark {
     padding: 0.2rem 0;
 }
 
-/* --- Collaborating institutions --- */
+/* --- Collaborating institutions, in one group per type --- */
+.collab-group + .collab-group { margin-top: 1.25rem; }
+
+/* Same caption style as the "Current focus" and filter labels. */
+.collab-group-label {
+    margin: 0 0 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
 .collab-list {
     list-style: none;
     margin: 0;
@@ -839,9 +933,6 @@ mark {
 
 .authors-toggle[aria-expanded="true"] { margin-left: 0.35em; }
 
-.interest-tag.is-clickable { cursor: pointer; }
-.interest-tag.is-clickable:hover { border-color: var(--tag); }
-
 .abstract-links a {
     font-weight: 600;
     margin-right: 2px;
@@ -861,6 +952,79 @@ mark {
     -webkit-mask-image: linear-gradient(to bottom, #000 15%, transparent 95%);
     mask-image: linear-gradient(to bottom, #000 15%, transparent 95%);
     user-select: none;
+}
+
+/* Industry recognition under the cover date, set in the same type as the text
+   column: the label in the abstract's grey, the companies in the authors' colour.
+   The block takes the height the card has left below the date, and at least the
+   label plus one line of companies; a list that does not fit is cut at a whole
+   line, with the toggle ending that line. */
+.pub-cover-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.pub-cover-col > * { flex: none; }
+
+/* The negative margins borrow the faded foot of the date mark and part of the
+   column's bottom padding, which is what lets a second line fit in a tight card. */
+.pub-cover-col > .pub-industry {
+    flex: 1 1 0px;
+    min-height: calc((var(--industry-label-lines, 1) + 1) * var(--industry-lh) * 1em);
+    margin: -0.3rem 0 -0.5rem;
+    overflow: hidden;
+}
+
+.pub-cover-col > .pub-industry.is-open {
+    flex: none;
+    overflow: visible;
+}
+
+.pub-industry {
+    --industry-lh: 1.5;
+    font-size: 0.85rem;
+    line-height: var(--industry-lh);
+    color: var(--text);
+}
+
+.pub-industry:focus { outline: 0; }
+
+.pub-industry-text { margin: 0; }
+
+.pub-industry-label {
+    display: block;
+    color: var(--muted);
+}
+
+.pub-industry-name { white-space: nowrap; }
+
+.pub-industry-toggle {
+    display: none;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pub-industry.is-clamped:not(.is-open) .pub-industry-text {
+    max-height: calc(var(--industry-lines, 1) * var(--industry-lh) * 1em);
+    overflow: hidden;
+}
+
+.pub-industry.is-clamped:not(.is-open) .pub-industry-text::before {
+    content: "";
+    float: right;
+    height: calc((var(--industry-lines, 1) - 1) * var(--industry-lh) * 1em);
+}
+
+.pub-industry.is-clamped:not(.is-open) .pub-industry-more {
+    display: block;
+    float: right;
+    clear: both;
+    margin-left: 0.5em;
+}
+
+.pub-industry.is-open .pub-industry-less {
+    display: inline;
+    margin-left: 0.25em;
 }
 
 /* Abstract: two lines, with the toggle sitting at the end of the second line. */
@@ -968,6 +1132,8 @@ div.lazy {
     }
 
     .home-side .panel { animation-delay: 0.08s; }
+
+    .news-body.is-ready { transition: max-height 0.35s ease; }
 
     @keyframes panel-in {
         from { opacity: 0; transform: translateY(8px); }

@@ -1,0 +1,18 @@
+{% if site.data.profile.research_statement or site.data.profile.research_focus %}
+<section id="research" class="panel research-panel section-anchor">
+    <h2 class="panel-title">Research</h2>
+    {% if site.data.profile.research_statement %}
+    <p class="research-topic">{{ site.data.profile.research_statement }}</p>
+    {% endif %}
+    {% if site.data.profile.research_focus %}
+    <div class="research-focus">
+        <span class="research-focus-label" id="research-focus-label">Current focus</span>
+        <ol class="research-focus-list" role="list" aria-labelledby="research-focus-label">
+            {% for direction in site.data.profile.research_focus %}
+            <li><span>{{ direction }}</span></li>
+            {% endfor %}
+        </ol>
+    </div>
+    {% endif %}
+</section>
+{% endif %}

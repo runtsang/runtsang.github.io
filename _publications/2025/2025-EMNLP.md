@@ -27,6 +27,13 @@ authors:
   - Cheng Han
   - Lifu Huang
   - Dongfang Liu
+# Companies with an author on a paper that cites this work, best known first.
+# Papers that share an author with this one are left out.
+industry_recognition:
+  - name: Qualcomm
+    cited_in: "Revisit Visual Prompt Tuning: The Expressiveness of Prompt Experts (ICLR 2026)"
+  - name: Trivita AI
+    cited_in: "Revisit Visual Prompt Tuning: The Expressiveness of Prompt Experts (ICLR 2026)"
 links:
   Homepage💻: https://runjia.tech/emnlp_mept/
   Code💾: https://github.com/runtsang/MEPT

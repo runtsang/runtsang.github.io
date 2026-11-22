@@ -1,10 +1,7 @@
 {% assign all_news = site.data.profile.news | sort: "date" | reverse -%}
-{% assign limit = include.limit | default: 3 %}
-{% assign visible_news = all_news | slice: 0, limit -%}
-{% assign hidden_news = all_news | slice: limit, all_news.size -%}
-
-{% assign visible_news_by_year = visible_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
-{% assign hidden_news_by_year = hidden_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
+{% assign limit = include.limit | default: 1 %}
+{% if limit < 1 %}{% assign limit = 1 %}{% endif %}
+{% assign news_by_year = all_news | group_by_exp: "item", "item.date | date: '%Y'" -%}
 
 <section id="news" class="panel news-panel section-anchor">
     <h2 class="panel-title">News</h2>
@@ -18,61 +15,33 @@
         {% endfor %}
     </div>
     {% endif %}
-    <div class="news-body">
-        {% for year in visible_news_by_year %}
-        <div class="news-year">
-            <div class="news-year-label">{{ year.name }}</div>
-            <div class="news-year-items">
-                {% for item in year.items %}
-                <div class="news-item">
-                    <div>
-                        {% if item.accepted == true or item.accepted == 'yes' %}{% if item.link %}<a class="news-tag" href="{{ item.link }}">[{{ item.con }}]</a>{% else %}<span class="news-tag">[{{ item.con }}]</span>{% endif %}{% else %}<span class="news-tag is-muted">[{{ item.con }}]</span>{% endif %}
-                        {{ item.title }}
+    {% comment %}
+    The first `limit` items show in full and the next one fades out as a teaser;
+    common.js measures where to cut and the button opens the rest.
+    {% endcomment %}
+    <div class="news-body{% if all_news.size > limit %} is-clipped{% endif %}" id="news-body" data-visible="{{ limit }}">
+        <div class="news-list">
+            {% for year in news_by_year %}
+            <div class="news-year">
+                <div class="news-year-label">{{ year.name }}</div>
+                <div class="news-year-items">
+                    {% for item in year.items %}
+                    <div class="news-item">
+                        <div>
+                            {% if item.accepted == true or item.accepted == 'yes' %}{% if item.link %}<a class="news-tag" href="{{ item.link }}">[{{ item.con }}]</a>{% else %}<span class="news-tag">[{{ item.con }}]</span>{% endif %}{% else %}<span class="news-tag is-muted">[{{ item.con }}]</span>{% endif %}
+                            {{ item.title }}
+                        </div>
+                        <div class="exp-date">{{ item.date | date: "%b %d" }}</div>
                     </div>
-                    <div class="exp-date">{{ item.date | date: "%b %d" }}</div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-
-        {% if hidden_news.size > 0 %}
-        <div id="more-news" class="collapse">
-        {% for year in hidden_news_by_year %}
-        <div class="news-year">
-            <div class="news-year-label">{{ year.name }}</div>
-            <div class="news-year-items">
-                {% for item in year.items %}
-                <div class="news-item">
-                    <div>
-                        {% if item.accepted == true or item.accepted == 'yes' %}{% if item.link %}<a class="news-tag" href="{{ item.link }}">[{{ item.con }}]</a>{% else %}<span class="news-tag">[{{ item.con }}]</span>{% endif %}{% else %}<span class="news-tag is-muted">[{{ item.con }}]</span>{% endif %}
-                        {{ item.title }}
-                    </div>
-                    <div class="exp-date">{{ item.date | date: "%b %d" }}</div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endfor %}
-        </div>
-        {% endif %}
     </div>
-    {% if hidden_news.size > 0 %}
-    <button type="button" class="more-btn" data-toggle="collapse" data-target="#more-news"
-        aria-expanded="false" aria-controls="more-news" id="more-news-btn">
-        Show more <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    {% if all_news.size > limit %}
+    <button type="button" class="more-btn" id="more-news-btn" aria-expanded="false" aria-controls="news-body">
+        <span>Show more</span> <i class="fas fa-chevron-down" aria-hidden="true"></i>
     </button>
     {% endif %}
 </section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var btn = document.getElementById('more-news-btn');
-        if (!btn) { return; }
-        $('#more-news').on('show.bs.collapse', function () {
-            btn.innerHTML = 'Show less <i class="fas fa-chevron-up" aria-hidden="true"></i>';
-        }).on('hide.bs.collapse', function () {
-            btn.innerHTML = 'Show more <i class="fas fa-chevron-down" aria-hidden="true"></i>';
-        });
-    });
-</script>

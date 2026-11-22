@@ -1,7 +1,7 @@
 {% assign item = include.item %}
 <div class="d-none d-md-block">
     <div class="row no-gutters pub-item {% unless include.hide_bottom_border %}border-bottom{% endunless %}">
-        <div class="col-md-3 mb-md-0 py-md-3 pr-md-3">
+        <div class="col-md-3 mb-md-0 py-md-3 pr-md-3 pub-cover-col">
             {%- if item.cover -%}
             <img data-src="{{ item.cover | relative_url }}" alt="{{ item.title }}" class="lazy w-100 rounded-sm"
                 src="{{ '/assets/images/empty_300x200.png' | relative_url }}">
@@ -10,6 +10,16 @@
                 viewBox="0 0 300 200"></svg>
             {%- endif -%}
             <div class="pub-date-mark" aria-hidden="true">&rsquo;{{ item.date | date: "%y %b" }}</div>
+            {%- if item.industry_recognition and item.industry_recognition.size > 0 %}
+            <div class="pub-industry" tabindex="-1">
+                <p class="pub-industry-text"><a href="#" class="pub-industry-toggle pub-industry-more" role="button" aria-expanded="false">&rarr; Expand</a><span class="pub-industry-label">Industry Recognition:</span>
+                    {%- for company in item.industry_recognition -%}
+                    {%- assign company_name = company.name | default: company %}
+                    <span class="pub-industry-name"{% if company.cited_in %} title="Cited in: {{ company.cited_in | escape }}"{% endif %}>{{ company_name | escape }}{% unless forloop.last %},{% endunless %}</span>
+                    {%- endfor %}
+                    <a href="#" class="pub-industry-toggle pub-industry-less" role="button" aria-expanded="true">&larr; Collapse</a></p>
+            </div>
+            {%- endif %}
         </div>
         <div class="col-md-9 py-3">
             <h3 class="pub-title">

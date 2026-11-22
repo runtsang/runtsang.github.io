@@ -22,4 +22,6 @@ authors:
   - Qifan Wang
   - Heng Fan
   - Dongfang Liu
+links:
+  Homepage💻: https://fork-jepa.github.io/
 ---

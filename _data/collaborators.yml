@@ -4,116 +4,144 @@
 # logos[].dark_src: a separate image used in the dark theme.
 # key: referenced by `institutions:` in each _publications/*.md so that clicking
 #      a logo filters the publication list.
+# type: `research` (universities and government labs) or `industry`; picks the
+#       group the logo is shown under. Entries without one count as research.
 - name: Rochester Institute of Technology
   key: rit
+  type: research
   url: https://www.rit.edu/
   logos:
     - src: /assets/images/institutions/rit.png
 - name: University of Missouri-Kansas City
   key: umkc
+  type: research
   url: https://www.umkc.edu/
   logos:
     - src: /assets/images/institutions/umkc.svg
       dark: invert
 - name: Meta AI
   key: meta
+  type: industry
   url: https://ai.meta.com/
   logos:
     - src: /assets/images/institutions/meta.svg
 - name: University of Rochester
   key: rochester
+  type: research
   url: https://www.rochester.edu/
   logos:
     - src: /assets/images/institutions/rochester.svg
       dark: invert
 - name: UC Davis
   key: ucdavis
+  type: research
   url: https://www.ucdavis.edu/
   logos:
     - src: /assets/images/institutions/ucdavis.svg
 - name: University of California, Los Angeles
   key: ucla
+  type: research
   url: https://www.ucla.edu/
   logos:
     - src: /assets/images/institutions/ucla.svg
       dark: invert
 - name: Rice University
   key: rice
+  type: research
   url: https://www.rice.edu/
   logos:
     - src: /assets/images/institutions/rice.png
       dark: invert
 - name: Case Western Reserve University
   key: cwru
+  type: research
   url: https://case.edu/
   logos:
     - src: /assets/images/institutions/cwru.svg
       dark: invert
 - name: U.S. DEVCOM Army Research Laboratory
   key: arl
+  type: research
   url: https://arl.devcom.army.mil/
   logos:
     - src: /assets/images/institutions/arl.png
       dark_src: /assets/images/institutions/arl-dark.png
 - name: U.S. Naval Research Laboratory
   key: nrl
+  type: research
   url: https://www.nrl.navy.mil/
   logos:
     - src: /assets/images/institutions/nrl.svg
       dark: invert
 - name: Adobe
   key: adobe
+  type: industry
   url: https://www.adobe.com/
   logos:
     - src: /assets/images/institutions/adobe.svg
 - name: Meituan
   key: meituan
+  type: industry
   url: https://www.meituan.com/
   logos:
     - src: /assets/images/institutions/meituan.png
       dark_src: /assets/images/institutions/meituan-dark.png
 - name: Sun Yat-sen University
   key: sysu
+  type: research
   url: https://www.sysu.edu.cn/
   logos:
     - src: /assets/images/institutions/sysu.png
       dark: invert
 - name: Purdue University
   key: purdue
+  type: research
   url: https://www.purdue.edu/
   logos:
     - src: /assets/images/institutions/purdue.svg
       dark: invert
 - name: Kent State University
   key: kent
+  type: research
   url: https://www.kent.edu/
   logos:
     - src: /assets/images/institutions/kent.svg
       dark: invert
 - name: Rutgers University
   key: rutgers
+  type: research
   url: https://www.rutgers.edu/
   logos:
     - src: /assets/images/institutions/rutgers.svg
 - name: Accenture
   key: accenture
+  type: industry
   url: https://www.accenture.com/
   logos:
     - src: /assets/images/institutions/accenture.svg
       dark: invert
-- name: MIT-IBM Watson AI Lab
-  key: mitibm
-  url: https://mitibmwatsonailab.mit.edu/
+# The MIT-IBM Watson AI Lab is listed as its two partners, one in each group.
+- name: MIT
+  key: mit
+  type: research
+  url: https://www.mit.edu/
   logos:
     - src: /assets/images/institutions/mit.svg
+- name: IBM
+  key: ibm
+  type: industry
+  url: https://research.ibm.com/
+  logos:
     - src: /assets/images/institutions/ibm.svg
       dark: invert
 # No `logos:` entry shows the name as text instead.
 - name: Gyges Labs
   key: gyges
+  type: industry
   url: https://gygeslabs.com/
 - name: University of North Texas
   key: unt
+  type: research
   url: https://www.unt.edu/
   logos:
     - src: /assets/images/institutions/unt.svg

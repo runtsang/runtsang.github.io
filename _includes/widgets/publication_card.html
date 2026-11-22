@@ -39,7 +39,7 @@
         </div>
         <div class="pub-filter-row">
             <span class="pub-filter-label">Interest</span>
-            <div class="publication-filter-bar pub-label-bar" data-facet="interest" role="group" aria-label="Filter by research interest"></div>
+            <div class="publication-filter-bar pub-label-bar" data-facet="interest" data-order="{{ site.data.profile.research_interests | join: '|' | escape }}" role="group" aria-label="Filter by research interest"></div>
         </div>
         <div class="pub-filter-row pub-inst-row d-none">
             <span class="pub-filter-label">Collaborator</span>
