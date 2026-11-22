@@ -75,6 +75,7 @@ work_experience:
     <a href="https://www.oracle.com/apac/application-development/code-assist/" target="_blank">https://www.oracle.com/apac/application-development/code-assist/</a>
     <ul>
       <li>Improving the generalization of machine learning engineering agents on DS-Bench and MLE-Bench.</li>
+      <li>Enabling recursive self-improvement (RSI) of MLE agents through prompt self-evolution.</li>
     </ul>
 
 experience:

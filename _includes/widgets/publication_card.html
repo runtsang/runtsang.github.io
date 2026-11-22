@@ -49,14 +49,24 @@
                 </button>
             </div>
         </div>
+        <div class="pub-filter-row pub-cited-row d-none">
+            <span class="pub-filter-label">Cited by</span>
+            <div class="publication-filter-bar">
+                <button type="button" class="publication-filter-btn active pub-cited-chip" aria-label="Remove cited-by filter">
+                    <span class="pub-cited-name"></span> <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="pub-list">
         {% for item in publications limit:include.limit %}
         {% assign groups = item.publication_groups | join: " " %}
         {% if groups == "" %}{% assign groups = "others" %}{% endif %}
+        {% capture cited %}{% for company in item.industry_recognition %}{{ company.name | default: company | slugify }} {% endfor %}{% endcapture %}
         <div class="pub-entry" data-groups="{{ groups }}" data-year="{{ item.date | date: '%Y' }}"
-            data-date="{{ item.date | date: '%Y%m%d' }}" data-inst="{{ item.institutions | join: ' ' }}">
+            data-date="{{ item.date | date: '%Y%m%d' }}" data-inst="{{ item.institutions | join: ' ' }}"
+            data-cited="{{ cited | strip }}">
             {% include widgets/publication_item.html item=item first=forloop.first last=forloop.last hide_bottom_border=true %}
         </div>
         {% endfor %}

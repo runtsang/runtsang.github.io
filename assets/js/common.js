@@ -185,7 +185,8 @@ function initNewsPeek() {
     });
 }
 
-// Publication filters: contribution, year, label, collaborator, plus sort order.
+// Publication filters: contribution, year, label, collaborator, citing company,
+// plus sort order.
 function initPublicationFilters() {
     var $section = $('.publication-section');
     if (!$section.length) { return; }
@@ -193,7 +194,12 @@ function initPublicationFilters() {
     var $list = $section.find('.pub-list');
     var $entries = $list.find('.pub-entry');
     var $empty = $list.find('.publication-empty-state');
-    var state = { group: 'all', year: 'all', topic: {}, interest: {}, inst: null, sort: 'desc' };
+    var state = { group: 'all', year: 'all', topic: {}, interest: {}, inst: null, cited: null, sort: 'desc' };
+
+    // Filters set by a logo outside the list: a collaborating institution ("inst")
+    // or a company that cites the paper ("cited"). A paper lists its keys in
+    // data-<facet>, and the chosen one shows as a chip in .pub-<facet>-row.
+    var logoFacets = ['inst', 'cited'];
 
     // Each paper's labels are read from the tags it already shows: the framed
     // tag is its topic, the coloured ones are research interests.
@@ -245,7 +251,10 @@ function initPublicationFilters() {
     function matches($entry) {
         if (state.group !== 'all' && (' ' + $entry.data('groups') + ' ').indexOf(' ' + state.group + ' ') < 0) { return false; }
         if (state.year !== 'all' && String($entry.data('year')) !== state.year) { return false; }
-        if (state.inst && (' ' + $entry.data('inst') + ' ').indexOf(' ' + state.inst + ' ') < 0) { return false; }
+        var missesLogo = logoFacets.some(function (facet) {
+            return state[facet] && (' ' + $entry.data(facet) + ' ').indexOf(' ' + state[facet] + ' ') < 0;
+        });
+        if (missesLogo) { return false; }
         if (!matchesLabels($entry, 'topic') || !matchesLabels($entry, 'interest')) { return false; }
         return true;
     }
@@ -261,14 +270,17 @@ function initPublicationFilters() {
         $section.find('.pub-count').text(shown === $entries.length
             ? shown + ' papers'
             : shown + ' of ' + $entries.length + ' papers');
-        var filtered = state.group !== 'all' || state.year !== 'all' || state.inst ||
+        var filtered = state.group !== 'all' || state.year !== 'all' || state.inst || state.cited ||
             Object.keys(state.topic).length > 0 || Object.keys(state.interest).length > 0;
         $section.find('.pub-reset').toggleClass('d-none', !filtered);
-        $section.find('.pub-inst-row').toggleClass('d-none', !state.inst);
-        $('.collab-list').toggleClass('has-active', !!state.inst);
-        $('.collab-btn').each(function () {
-            var active = $(this).data('inst') === state.inst;
-            $(this).toggleClass('active', active).attr('aria-pressed', String(active));
+        logoFacets.forEach(function (facet) {
+            var $buttons = $('.collab-btn[data-facet="' + facet + '"]');
+            $section.find('.pub-' + facet + '-row').toggleClass('d-none', !state[facet]);
+            $buttons.closest('.collab-list').toggleClass('has-active', !!state[facet]);
+            $buttons.each(function () {
+                var active = String($(this).data('key')) === state[facet];
+                $(this).toggleClass('active', active).attr('aria-pressed', String(active));
+            });
         });
         // Newly revealed covers need a nudge to lazy-load.
         $(window).trigger('scroll');
@@ -313,21 +325,24 @@ function initPublicationFilters() {
         apply();
     });
 
-    function setInstitution(key, name) {
-        state.inst = key;
-        $section.find('.pub-inst-name').text(name || '');
+    function setLogoFilter(facet, key, name) {
+        state[facet] = key;
+        $section.find('.pub-' + facet + '-name').text(name || '');
     }
 
     $('.collab-btn').on('click', function () {
-        var key = $(this).data('inst');
-        if (state.inst === key) { setInstitution(null); } else { setInstitution(key, $(this).data('name')); }
+        var facet = $(this).data('facet');
+        var key = String($(this).data('key'));
+        if (state[facet] === key) { setLogoFilter(facet, null); } else { setLogoFilter(facet, key, $(this).data('name')); }
         apply();
-        if (state.inst) { $section[0].scrollIntoView({ block: 'start' }); }
+        if (state[facet]) { $section[0].scrollIntoView({ block: 'start' }); }
     });
 
-    $section.find('.pub-inst-chip').on('click', function () {
-        setInstitution(null);
-        apply();
+    logoFacets.forEach(function (facet) {
+        $section.find('.pub-' + facet + '-chip').on('click', function () {
+            setLogoFilter(facet, null);
+            apply();
+        });
     });
 
     $section.find('.pub-reset').on('click', function () {
@@ -336,7 +351,7 @@ function initPublicationFilters() {
         state.topic = {};
         state.interest = {};
         $section.find('.pub-label-chip').removeClass('active').attr('aria-pressed', 'false');
-        setInstitution(null);
+        logoFacets.forEach(function (facet) { setLogoFilter(facet, null); });
         apply();
     });
 

@@ -46,20 +46,9 @@
                 {% unless item_type == "industry" %}{% assign item_type = "research" %}{% endunless %}
                 {% if item_type == group_key %}
                 <li>
-                    <button type="button" class="collab-btn" data-inst="{{ item.key }}" data-name="{{ item.name }}"
-                        title="{{ item.name }}: show our papers" aria-label="Show papers with {{ item.name }}" aria-pressed="false">
-                        {% if item.logos %}
-                        {% for logo in item.logos %}
-                        <img src="{{ logo.src | relative_url }}" alt="" loading="lazy"
-                            class="collab-logo{% if logo.dark == 'invert' %} is-dark-invert{% endif %}{% if logo.dark_src %} is-light-only{% endif %}">
-                        {% if logo.dark_src %}
-                        <img src="{{ logo.dark_src | relative_url }}" alt="" loading="lazy" class="collab-logo is-dark-only">
-                        {% endif %}
-                        {% endfor %}
-                        {% else %}
-                        <span class="collab-text">{{ item.name }}</span>
-                        {% endif %}
-                    </button>
+                    {% capture collab_hint %}{{ item.name }}: show our papers{% endcapture %}
+                    {% capture collab_label %}Show papers with {{ item.name }}{% endcapture %}
+                    {% include widgets/logo_button.html item=item facet="inst" key=item.key hint=collab_hint label=collab_label %}
                 </li>
                 {% endif %}
                 {% endfor %}
@@ -67,5 +56,37 @@
         </div>
         {% endfor %}
     </div>
+    {% endif %}
+
+    {% if site.data.industry_recognition %}
+    {% comment %}
+    Companies from _data/industry_recognition.yml, shown only when some paper
+    lists them under `industry_recognition`. A logo filters the list to those
+    papers; the key is the slug of the company name on both sides.
+    {% endcomment %}
+    {% capture cited_keys %}{% for paper in site.publications %}{% for company in paper.industry_recognition %}|{{ company.name | default: company | slugify }}|{% endfor %}{% endfor %}{% endcapture %}
+    {% capture cited_items %}
+                {% for item in site.data.industry_recognition %}
+                {% assign cited_key = item.name | slugify %}
+                {% capture cited_needle %}|{{ cited_key }}|{% endcapture %}
+                {% if cited_keys contains cited_needle %}
+                <li>
+                    {% capture cited_hint %}{{ item.name }}: show the papers they cite{% endcapture %}
+                    {% capture cited_label %}Show papers cited by {{ item.name }}{% endcapture %}
+                    {% include widgets/logo_button.html item=item facet="cited" key=cited_key hint=cited_hint label=cited_label %}
+                </li>
+                {% endif %}
+                {% endfor %}
+    {% endcapture %}
+    {% comment %} No heading without at least one matching company. {% endcomment %}
+    {% assign cited_items_text = cited_items | strip %}
+    {% unless cited_items_text == "" %}
+    <div class="exp-section">
+        <h2 class="panel-title" id="industry-recognition">Industry Recognition</h2>
+        <ul class="collab-list" aria-labelledby="industry-recognition">
+            {{ cited_items }}
+        </ul>
+    </div>
+    {% endunless %}
     {% endif %}
 </section>

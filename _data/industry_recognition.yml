@@ -1,0 +1,55 @@
+# Companies in the Industry Recognition block on the homepage, best known first.
+# name:  must match the `name` used under `industry_recognition:` in the papers
+#        (_publications/*.md). A company shows here only if some paper lists it,
+#        and clicking its logo filters the publication list to those papers.
+# logos: as in collaborators.yml (`dark: invert`, `dark_src`); an entry without
+#        `logos:` shows the name as text. The SVGs in assets/images/industry/ come
+#        from Wikimedia Commons (Baidu's from English Wikipedia) and are the
+#        companies' trademarks, used here only to name them.
+- name: Microsoft
+  url: https://www.microsoft.com/
+  logos:
+    - src: /assets/images/industry/microsoft.svg
+- name: Amazon
+  url: https://www.amazon.science/
+  logos:
+    - src: /assets/images/industry/amazon.svg
+      dark: invert
+- name: NVIDIA
+  url: https://www.nvidia.com/
+  logos:
+    - src: /assets/images/industry/nvidia.svg
+      dark: invert
+- name: Tencent
+  url: https://www.tencent.com/
+  logos:
+    - src: /assets/images/industry/tencent.svg
+- name: Alibaba
+  url: https://www.alibabagroup.com/
+  logos:
+    - src: /assets/images/industry/alibaba.svg
+- name: Qualcomm
+  url: https://www.qualcomm.com/
+  logos:
+    - src: /assets/images/industry/qualcomm.svg
+- name: Baidu
+  url: https://www.baidu.com/
+  logos:
+    - src: /assets/images/industry/baidu.svg
+      dark: invert
+- name: LG
+  url: https://www.lgresearch.ai/
+  logos:
+    - src: /assets/images/industry/lg.svg
+- name: NTT
+  url: https://group.ntt/
+  logos:
+    - src: /assets/images/industry/ntt.svg
+- name: Capital One
+  url: https://www.capitalone.com/
+  logos:
+    - src: /assets/images/industry/capital-one.svg
+      dark: invert
+# No logo files for these two; their names show as text.
+- name: Trivita AI
+- name: Sympflux

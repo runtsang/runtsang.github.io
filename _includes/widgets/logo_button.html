@@ -1,0 +1,21 @@
+{% comment %}
+A logo (or the name, when there is no logo) that filters the publication list.
+  item:  an entry with `name` and optional `logos` (see _data/collaborators.yml)
+  facet: which filter it drives, "inst" (collaborator) or "cited" (citing company)
+  key:   the value looked up in the paper's data-<facet> attribute
+  hint:  tooltip; label: accessible name
+{% endcomment %}
+<button type="button" class="collab-btn" data-facet="{{ include.facet }}" data-key="{{ include.key }}" data-name="{{ include.item.name | escape_once }}"
+    title="{{ include.hint | escape_once }}" aria-label="{{ include.label | escape_once }}" aria-pressed="false">
+    {% if include.item.logos %}
+    {% for logo in include.item.logos %}
+    <img src="{{ logo.src | relative_url }}" alt="" loading="lazy"
+        class="collab-logo{% if logo.dark == 'invert' %} is-dark-invert{% endif %}{% if logo.dark_src %} is-light-only{% endif %}">
+    {% if logo.dark_src %}
+    <img src="{{ logo.dark_src | relative_url }}" alt="" loading="lazy" class="collab-logo is-dark-only">
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <span class="collab-text">{{ include.item.name | escape_once }}</span>
+    {% endif %}
+</button>
