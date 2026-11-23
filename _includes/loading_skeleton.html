@@ -1,0 +1,114 @@
+<!-- Loading skeleton: every .panel starts as a shimmering block (global.css) and
+     shows once the page script has run and the panel's own images are in. A
+     cached page still holds the blocks for MIN_SHOW, so the pass is always seen.
+     Inline, so that it runs before the first paint and needs no other script. -->
+<script>
+    (function () {
+        var root = document.documentElement;
+        if (!window.requestAnimationFrame || !root.classList) { return; }
+        // No artificial wait and no shimmer for visitors who ask for less motion.
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+
+        var MIN_SHOW = 450;   // the blocks stay up this long, however fast the page loaded
+        var STEP = 70;        // gap between one module showing and the next
+        var FADE = 400;       // the block's fade-out, as set in global.css
+        var SETTLE = 50;      // lets common.js finish its own layout work first
+        var FONT_WAIT = 2000; // web fonts get this long to swap in under the blocks
+        var GIVE_UP = 6000;   // a stalled script or image never holds a module longer
+
+        var panels = null;    // visible panels, top to bottom, then left to right
+        var queued = [];
+        var left = 0;
+        var slot = 0;         // earliest time the next module may show
+
+        root.classList.add('is-loading');
+
+        function done() {
+            root.classList.remove('is-loading');
+            (panels || []).forEach(function (panel) { panel.classList.remove('is-loaded'); });
+        }
+
+        function collect() {
+            if (panels) { return; }
+            panels = Array.prototype.slice.call(document.querySelectorAll('.panel'))
+                .map(function (el) { return { el: el, box: el.getBoundingClientRect() }; })
+                .filter(function (item) { return item.box.width > 0; })
+                .sort(function (a, b) { return a.box.top - b.box.top || a.box.left - b.box.left; })
+                .map(function (item) { return item.el; });
+            left = panels.length;
+            if (!left) { done(); }
+        }
+
+        function show(panel) {
+            if (queued.indexOf(panel) >= 0) { return; }
+            queued.push(panel);
+            var at = Math.max(Date.now(), slot);
+            slot = at + STEP;
+            setTimeout(function () {
+                panel.classList.add('is-loaded');
+                left -= 1;
+                if (!left) { setTimeout(done, FADE); }
+            }, at - Date.now());
+        }
+
+        // A module waits for the images it shows straight away. Covers and logos
+        // that load on scroll fade in on their own, an image that is not displayed
+        // at this width has nothing to show, and a badge served by another host is
+        // not worth holding a module back for.
+        function watch(panel) {
+            var images = Array.prototype.slice.call(panel.querySelectorAll('img')).filter(function (img) {
+                return !img.complete && !img.classList.contains('lazy') &&
+                    img.getAttribute('loading') !== 'lazy' &&
+                    img.getClientRects().length > 0 &&
+                    img.src.indexOf(location.origin + '/') === 0;
+            });
+            var missing = images.length;
+            if (!missing) { show(panel); return; }
+            function settle() {
+                missing -= 1;
+                if (!missing) { show(panel); }
+            }
+            images.forEach(function (img) {
+                img.addEventListener('load', settle);
+                img.addEventListener('error', settle);
+            });
+        }
+
+        function start() {
+            collect();
+            var watching = false;
+            function go() {
+                if (watching) { return; }
+                watching = true;
+                panels.forEach(watch);
+            }
+            // Web fonts swap in under the blocks rather than in front of the visitor,
+            // unless they are slow: the text is readable in the fallback font.
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(go, go);
+                setTimeout(go, FONT_WAIT);
+            } else {
+                go();
+            }
+        }
+
+        function giveUp() {
+            collect();
+            panels.forEach(show);
+        }
+
+        // The clock starts when the blocks are first on screen; in a background
+        // tab that is when the visitor switches to it.
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                slot = Date.now() + MIN_SHOW;
+                setTimeout(giveUp, GIVE_UP);
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', function () { setTimeout(start, SETTLE); });
+                } else {
+                    setTimeout(start, SETTLE);
+                }
+            });
+        });
+    })();
+</script>
