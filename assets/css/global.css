@@ -19,6 +19,8 @@
     --on-accent: #ffffff;
     --shadow: 0 1px 2px rgba(20, 20, 19, 0.04);
     --veil: rgba(255, 255, 255, 0.92);
+    --skeleton: #efece3;
+    --skeleton-shine: #fdfcf9;
 
     --tag-1: #3d6b64;
     --tag-2: #9b4d53;
@@ -49,6 +51,8 @@
     --on-accent: #1f1e1d;
     --shadow: none;
     --veil: rgba(42, 41, 39, 0.92);
+    --skeleton: #2c2b29;
+    --skeleton-shine: #3b3a36;
 
     --tag-1: #8cc4ba;
     --tag-2: #e3a0a5;
@@ -271,6 +275,42 @@ mark {
     .home-grid {
         grid-template-columns: minmax(0, 1fr) 516px;
     }
+}
+
+/* ==========================================================================
+   Loading skeleton. The inline script in the layout puts .is-loading on <html>
+   before the first paint: every panel is then covered by a block, and one band
+   of light crosses all of them (the gradient is fixed to the viewport, so the
+   blocks are windows onto the same sweep). The script marks a panel .is-loaded
+   when its content is in, and takes .is-loading off once all of them are shown.
+   ========================================================================== */
+.is-loading .panel { position: relative; }
+
+.is-loading .panel::after {
+    content: "";
+    position: absolute;
+    inset: -1px;   /* over the border as well */
+    z-index: 10;   /* above the timeline dots and logos */
+    border-radius: inherit;
+    background: var(--skeleton) linear-gradient(100deg, transparent 38%, var(--skeleton-shine) 50%, transparent 62%) fixed;
+    background-size: 200% 100%;
+    animation: skeleton-sweep 1.5s linear infinite;
+    transition: opacity 0.4s ease;
+}
+
+.is-loading .panel.is-loaded::after {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes skeleton-sweep {
+    from { background-position: 100% 0; }
+    to { background-position: -100% 0; }
+}
+
+/* A page printed or saved as PDF right at load shows its content, not the blocks */
+@media print {
+    .is-loading .panel::after { display: none; }
 }
 
 /* ==========================================================================
@@ -1211,12 +1251,6 @@ div.lazy {
 @media (prefers-reduced-motion: no-preference) {
     html { scroll-behavior: smooth; }
 
-    .panel {
-        animation: panel-in 0.45s ease both;
-    }
-
-    .home-side .panel { animation-delay: 0.08s; }
-
     .research-area-pop { animation: research-pop-in 0.16s ease-out; }
 
     @keyframes research-pop-in {
@@ -1225,11 +1259,6 @@ div.lazy {
     }
 
     .news-body.is-ready { transition: max-height 0.35s ease; }
-
-    @keyframes panel-in {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: none; }
-    }
 }
 
 @media (max-width: 575.98px) {
