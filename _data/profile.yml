@@ -58,7 +58,7 @@ research_focus:
   - '<abbr title="Recursive Self-Improvement">RSI</abbr> Agents'
   - '<abbr title="Recursive Self-Improvement">RSI</abbr> Robotics'
   - 'World Models for Science'
-  - 'World Model Architectures'
+  - 'World Model Training'
 
 # Order of the Interest chips in the Publications filter.
 research_interests: [LLMs, GenAI, Agentic AI, LLMs Adaptation, LLMs Training, Reasoning, RL]
